@@ -13,6 +13,10 @@ function Cookbook() {
     return <h2>This is a cookbook!</h2>
 }
 
+function Login() {
+    return <h1>Login/Create Account</h1>
+}
+
 function NavBar() {
     return <React.Fragment>
         <Router>
@@ -25,14 +29,20 @@ function NavBar() {
             <li>
                 <Link to="/cookbook"> Cookbooks </Link>
             </li>
+            <li>
+                <Link to="/login"> Logout </Link>
+            </li>
             </ul>
         </nav>
         <Switch>
             <Route exact path="/">
-            <Homepage />
+                <Homepage />
             </Route>
             <Route path="/cookbook">
-            <Cookbook />
+                <Cookbook />
+            </Route>
+            <Route path="/login">
+                <Login />
             </Route>
         </Switch>
         </div>
