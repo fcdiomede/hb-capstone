@@ -6,28 +6,42 @@ const Switch = ReactRouterDOM.Switch;
 const Redirect = ReactRouterDOM.Redirect;
 
 function Homepage() {
-    return <div> Welcome to my site </div>
+    return <h1>This is the homepage!</h1>
+}
+
+function Cookbook() {
+    return <h2>This is a cookbook!</h2>
+}
+
+function NavBar() {
+    return <React.Fragment>
+        <Router>
+        <div>
+        <nav>
+            <ul>
+            <li>
+                <Link to="/"> Home </Link>
+            </li>
+            <li>
+                <Link to="/cookbook"> Cookbooks </Link>
+            </li>
+            </ul>
+        </nav>
+        <Switch>
+            <Route exact path="/">
+            <Homepage />
+            </Route>
+            <Route path="/cookbook">
+            <Cookbook />
+            </Route>
+        </Switch>
+        </div>
+    </Router>
+  </React.Fragment>
 }
 
 function App() {
-    return (
-        <Router>
-          <div>
-            <nav>
-              <ul>
-                <li>
-                    <Link to="/"> Home </Link>
-                </li>
-              </ul>
-            </nav>
-            <Switch>
-              <Route path="/">
-                <Homepage />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      );
+    return <NavBar />;
 
 }
 
