@@ -38,6 +38,7 @@ class Cookbook(db.Model):
     def __repr__(self):
         return f'<Cookbook cookbook_id={self.cookbook_id} title={self.title}>'
 
+
 class Recipe(db.Model):
     """A recipe"""
 
@@ -48,22 +49,50 @@ class Recipe(db.Model):
     ingredients = db.Column(db.Text)
 
     cookbooks = db.relationship('Cookbook', secondary="cookbook_recipes")
+    steps = db.relationship('Step')
 
     def __repr__(self):
         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
+
+#A recipe could be stored in several cookbooks
+#ex. Dinner cookbook and a vegetarian cookbook
 class CookbookRecipe(db.Model):
     """Recipes in a specific cookbook."""
 
     __tablename__ = 'cookbook_recipes'
 
-    cookbook_recipe_id = db.Column(db.Integer, primary_key=True)
+    cookbook_recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     cookbook_id = db.Column(db.Integer,
                         db.ForeignKey('cookbooks.cookbook_id'),
                         nullable=False)
     recipe_id = db.Column(db.Integer,
                          db.ForeignKey('recipes.recipe_id'),
                          nullable=False)
+
+    def __repr__(self):
+        return f'<CookbookRecipe cookbook_id={self.cookbook_id} recipe_id={self.recipe_id}>'
+
+
+class Step(db.Model):
+    """Each step of a recipe"""
+
+    __tablename__ = 'steps'
+
+    step_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    recipe_id = db.Column(db.Integer,
+                        db.ForeignKey('recipes.recipe_id'),
+                        nullable=False)
+    step_number = db.Column(db.Integer, nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    media = db.Column(db.String)
+
+    recipe = db.relationship('Recipe')
+
+    def __repr__(self):
+        return f'<Step step_id={self.step_id} recipe_id={self.recipe_id}>'
+
+
 
 # Helper functions
 
@@ -86,22 +115,27 @@ if __name__ == "__main__":
     connect_to_db(app)
     db.create_all()
     
-    # #create a test user
-    # test_user = User(fname='T', lname='est', email='test@test.test', password='test')
-    # db.session.add(test_user)
-    # db.session.commit()
+    #create a test user
+    test_user = User(fname='T', lname='est', email='test@test.test', password='test')
+    db.session.add(test_user)
+    db.session.commit()
 
-    # #create a test cookbook
-    # test_cookbook = Cookbook(title='Experimental', cover_img='a url', user_id=test_user.user_id)
-    # db.session.add(test_cookbook)
-    # db.session.commit()
+    #create a test cookbook
+    test_cookbook = Cookbook(title='Experimental', cover_img='a url', user_id=test_user.user_id)
+    db.session.add(test_cookbook)
+    db.session.commit()
 
-    # #create a test recipe
-    # test_recipe= Recipe(title="My first recipe", ingredients="eggs")
-    # db.session.add(test_recipe)
-    # db.session.commit()
+    #create a test recipe
+    test_recipe= Recipe(title='My first recipe', ingredients='eggs')
+    db.session.add(test_recipe)
+    db.session.commit()
 
-    # #connect test recipe and test cookbook
-    # cookbook_recipe = CookbookRecipe(cookbook_id= test_cookbook.cookbook_id, recipe_id=test_recipe.recipe_id)
-    # db.session.add(cookbook_recipe)
-    # db.session.commit()
+    #create a step for the recipe
+    test_step = Step(recipe_id=test_recipe.recipe_id, step_number=1, body='fry the eggs')
+    db.session.add(test_step)
+    db.session.commit()
+
+    #connect test recipe and test cookbook
+    cookbook_recipe = CookbookRecipe(cookbook_id= test_cookbook.cookbook_id, recipe_id=test_recipe.recipe_id)
+    db.session.add(cookbook_recipe)
+    db.session.commit()
