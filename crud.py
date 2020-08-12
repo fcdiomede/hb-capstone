@@ -13,6 +13,17 @@ def create_user(fname, lname, email, password):
 
     return user
 
+    
+def create_cookbook(title, cover_img, user_id):
+    """Create and return and new cookbook"""
+
+    cookbook = Cookbook(title=title, cover_img=cover_img, user_id=user_id)
+
+    db.session.add(cookbook)
+    db.session.commit()
+
+    return cookbook
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
