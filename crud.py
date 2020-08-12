@@ -4,7 +4,7 @@ from model import db, connect_to_db, Cookbook, Recipe, CookbookRecipe, Step, Use
 
 
 def create_user(fname, lname, email, password):
-    """Create and return a new user."""
+    """Create and return a new user"""
 
     user = User(fname=fname, lname=lname, email=email, password=password)
 
@@ -13,7 +13,7 @@ def create_user(fname, lname, email, password):
 
     return user
 
-    
+
 def create_cookbook(title, cover_img, user_id):
     """Create and return and new cookbook"""
 
@@ -23,6 +23,16 @@ def create_cookbook(title, cover_img, user_id):
     db.session.commit()
 
     return cookbook
+
+def create_recipe(title, ingredients):
+    """Create and return a new recipe"""
+
+    recipe = Recipe(title=title, ingredients=ingredients)
+
+    db.session.add(recipe)
+    db.session.commit()
+
+    return recipe
 
 if __name__ == '__main__':
     from server import app
