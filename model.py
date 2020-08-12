@@ -10,9 +10,7 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer,
-                        autoincrement=True,
-                        primary_key=True)
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     fname = db.Column(db.String)
     lname = db.Column(db.String)
     email = db.Column(db.String, unique=True)
@@ -25,20 +23,21 @@ class User(db.Model):
 
 # Helper functions
 
-def connect_to_db(app):
+def connect_to_db(flask_app, db_uri='postgresql:///recipeapp', echo=True):
     """Connect the database to our Flask app."""
 
     # Configure to use our database.
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgres:///recipeapp"
-    app.config["SQLALCHEMY_ECHO"] = False
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    db.app = app
-    db.init_app(app)
+    flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print('Connected to the db!')
 
 
 if __name__ == "__main__":
-    # As a convenience, if we run this module interactively, it will leave
-    # you in a state of being able to work with the database directly.
-
     from server import app
     connect_to_db(app)
+    db.create_all()
