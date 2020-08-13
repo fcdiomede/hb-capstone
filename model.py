@@ -48,6 +48,9 @@ class Recipe(db.Model):
     recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String, nullable=False)
     ingredients = db.Column(db.Text)
+    time_required = db.Column(db.Integer)
+    time_units = db.Column(db.String)
+    servings = db.Column(db.Integer)
 
     cookbooks = db.relationship('Cookbook', secondary="cookbook_recipes")
     steps = db.relationship('Step')
@@ -116,27 +119,28 @@ if __name__ == "__main__":
     connect_to_db(app)
     db.create_all()
     
-    # #create a test user
-    # test_user = User(fname='T', lname='est', email='test@test.test', password='test')
-    # db.session.add(test_user)
-    # db.session.commit()
+    #create a test user
+    test_user = User(fname='T', lname='est', email='test@test.test', password='test')
+    db.session.add(test_user)
+    db.session.commit()
 
-    # #create a test cookbook
-    # test_cookbook = Cookbook(title='Experimental', cover_img='a url', user_id=test_user.user_id)
-    # db.session.add(test_cookbook)
-    # db.session.commit()
+    #create a test cookbook
+    test_cookbook = Cookbook(title='Experimental', cover_img='a url', user_id=test_user.user_id)
+    db.session.add(test_cookbook)
+    db.session.commit()
 
-    # #create a test recipe
-    # test_recipe= Recipe(title='My first recipe', ingredients='eggs')
-    # db.session.add(test_recipe)
-    # db.session.commit()
+    #create a test recipe
+    test_recipe= Recipe(title='My first recipe', ingredients='eggs',
+                        time_required=3, time_units='minutes', servings=1)
+    db.session.add(test_recipe)
+    db.session.commit()
 
-    # #create a step for the recipe
-    # test_step = Step(recipe_id=test_recipe.recipe_id, step_number=1, body='fry the eggs')
-    # db.session.add(test_step)
-    # db.session.commit()
+    #create a step for the recipe
+    test_step = Step(recipe_id=test_recipe.recipe_id, step_number=1, body='fry the eggs')
+    db.session.add(test_step)
+    db.session.commit()
 
-    # #connect test recipe and test cookbook
-    # cookbook_recipe = CookbookRecipe(cookbook_id= test_cookbook.cookbook_id, recipe_id=test_recipe.recipe_id)
-    # db.session.add(cookbook_recipe)
-    # db.session.commit()
+    #connect test recipe and test cookbook
+    cookbook_recipe = CookbookRecipe(cookbook_id= test_cookbook.cookbook_id, recipe_id=test_recipe.recipe_id)
+    db.session.add(cookbook_recipe)
+    db.session.commit()

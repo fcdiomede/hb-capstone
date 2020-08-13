@@ -24,12 +24,14 @@ def create_cookbook(title, cover_img, user_id):
     db.session.add(cookbook)
     db.session.commit()
 
-    return cookbook
+    return cookbook 
 
-def create_recipe(title, ingredients):
+def create_recipe(title, ingredients, time_required, time_units, servings):
     """Create and return a new recipe"""
 
-    recipe = Recipe(title=title, ingredients=ingredients)
+    recipe = Recipe(title=title, ingredients=ingredients, 
+                    time_required=time_required, time_units=time_units, 
+                    servings=servings)
 
     db.session.add(recipe)
     db.session.commit()
