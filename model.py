@@ -15,6 +15,7 @@ class User(db.Model):
     lname = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String, nullable=False)
+    profile_picture = db.Column(db.String)
 
     cookbook = db.relationship('Cookbook')
 
