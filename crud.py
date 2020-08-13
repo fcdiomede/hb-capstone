@@ -15,6 +15,10 @@ def create_user(fname, lname, email, password,
 
     return user
 
+def all_users():
+    """Return a list of all users"""
+
+    return User.query.all()
 
 def create_cookbook(title, cover_img, user_id):
     """Create and return and new cookbook"""
