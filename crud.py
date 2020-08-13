@@ -34,6 +34,17 @@ def create_recipe(title, ingredients):
 
     return recipe
 
+def link_recipe_to_cookbook(cookbook_id, recipe_id):
+    """Link a recipe to a cookbook and return linkage object"""
+
+    cookbook_recipe = CookbookRecipe(cookbook_id=cookbook_id, recipe_id=recipe_id)
+
+    db.session.add(cookbook_recipe)
+    db.session.commit()
+
+    return cookbook_recipe
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
