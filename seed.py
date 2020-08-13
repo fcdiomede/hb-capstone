@@ -23,3 +23,13 @@ for i in range(10):
     password = "test"
 
     user = crud.create_user(fname, lname, email, password)
+
+#For each user, create 2 fake cookbooks
+users = crud.all_users()
+
+for user in users:
+    for i in range(2):
+        cookbook_title = fake.word()
+        cookbook_img = f"/static/img/cooking_{randint(1,7)}"
+
+        crud.create_cookbook(cookbook_title, cookbook_img, user.user_id)
