@@ -3,7 +3,8 @@
 from model import db, connect_to_db, Cookbook, Recipe, CookbookRecipe, Step, User
 
 
-def create_user(fname, lname, email, password, profile_picture='a url'):
+def create_user(fname, lname, email, password, 
+                profile_picture="/static/img/chef_hat.png"):
     """Create and return a new user"""
 
     user = User(fname=fname, lname=lname, email=email, password=password,
@@ -46,7 +47,7 @@ def link_recipe_to_cookbook(cookbook_id, recipe_id):
 
     return cookbook_recipe
 
-def create_step(recipe_id, step_number, body, media):
+def create_step(recipe_id, step_number, body, media=None):
     """Create and return a recipe step"""
 
     step = Step(recipe_id=recipe_id, step_number=step_number, 
