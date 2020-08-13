@@ -48,8 +48,7 @@ class Recipe(db.Model):
     recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String, nullable=False)
     ingredients = db.Column(db.Text)
-    time_required = db.Column(db.Integer)
-    time_units = db.Column(db.String)
+    time_required = db.Column(db.String)
     servings = db.Column(db.Integer)
 
     cookbooks = db.relationship('Cookbook', secondary="cookbook_recipes")

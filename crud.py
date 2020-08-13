@@ -28,19 +28,29 @@ def create_cookbook(title, cover_img, user_id):
     db.session.add(cookbook)
     db.session.commit()
 
-    return cookbook 
+    return cookbook
 
-def create_recipe(title, ingredients, time_required, time_units, servings):
+def all_cookbooks():
+    """Return a list of all cookbooks"""
+
+    return Cookbook.query.all() 
+
+def create_recipe(title, ingredients, time_required, servings):
     """Create and return a new recipe"""
 
     recipe = Recipe(title=title, ingredients=ingredients, 
-                    time_required=time_required, time_units=time_units, 
-                    servings=servings)
+                    time_required=time_required, servings=servings)
 
     db.session.add(recipe)
     db.session.commit()
 
     return recipe
+
+def all_recipes():
+    """Returns all recipes"""
+
+    return Recipe.query.all()
+    
 
 def link_recipe_to_cookbook(cookbook_id, recipe_id):
     """Link a recipe to a cookbook and return linkage object"""
