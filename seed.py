@@ -30,7 +30,7 @@ users = crud.all_users()
 for user in users:
     for i in range(2):
         cookbook_title = fake.word()
-        cookbook_img = f"/static/img/cooking_{randint(1,7)}"
+        cookbook_img = f"/static/img/cooking_{randint(1,7)}.jpg"
 
         cookbook = crud.create_cookbook(cookbook_title, cookbook_img, 
                                         user.user_id)
@@ -61,7 +61,7 @@ for recipe in recipes:
         body = fake.text()
         does_step_have_img = choice([True, False])
         if does_step_have_img:
-            media = f"/static/img/cooking_{randint(1,7)}"
+            media = f"/static/img/cooking_{randint(1,7)}.jpg"
         else:
             media = None
         
