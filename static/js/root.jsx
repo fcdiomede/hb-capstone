@@ -5,7 +5,7 @@ const Prompt =  ReactRouterDOM.Prompt;
 const Switch = ReactRouterDOM.Switch;
 const Redirect = ReactRouterDOM.Redirect;
 
-
+//specific cookbook card component
 function CookbookCover(props) {
     return (
         <div className="cookbook">
@@ -15,6 +15,8 @@ function CookbookCover(props) {
       );
     }
 
+
+//component to hold all cookbook cards
 function CookbookContainer() {
 
     // make a call to the server to ask for information
@@ -44,6 +46,7 @@ function CookbookContainer() {
       );
 }
 
+
 function Homepage() {
     return <CookbookContainer />
 }
@@ -52,15 +55,19 @@ function Cookbook() {
     return <h2>This is a cookbook!</h2>
 }
 
+//login form component
+//handles authenticating password
 function Login() {
 
+    //track email and password enters
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    //whenever the user makes a change, update the corresponding
+    //whenever the user makes a change, update the corresponding state
     const handleEmailChange = (evt) => {setEmail(evt.currentTarget.value)};
     const handlePasswordChange = (evt) => {setPassword(evt.currentTarget.value)};
 
+    //makes a server request to authenticate password typed in
     const authenticateUser = () => {
         const user = {
             email: email,
@@ -81,6 +88,7 @@ function Login() {
     });
     }
 
+    //login form
     return (
         <div>
             Email:

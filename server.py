@@ -15,7 +15,9 @@ def get_user_cookbooks():
     cookbook_list = []
 
     for c in cookbooks:
-       cookbook_list.append({"key": c.cookbook_id,"title": c.title, "imgUrl": c.cover_img})
+       cookbook_list.append({"key": c.cookbook_id,
+                            "title": c.title, 
+                            "imgUrl": c.cover_img})
 
     return jsonify(cookbook_list)
 
