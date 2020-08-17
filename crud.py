@@ -20,6 +20,12 @@ def all_users():
 
     return User.query.all()
 
+def get_user_by_email(user_email):
+    """Return a specifc user by email address"""
+
+    return User.query.filter_by(email=user_email).first()
+
+
 def create_cookbook(title, cover_img, user_id):
     """Create and return and new cookbook"""
 
@@ -30,10 +36,12 @@ def create_cookbook(title, cover_img, user_id):
 
     return cookbook
 
+
 def all_cookbooks():
     """Return a list of all cookbooks"""
 
     return Cookbook.query.all() 
+
 
 def create_recipe(title, ingredients, time_required, servings):
     """Create and return a new recipe"""
@@ -46,11 +54,12 @@ def create_recipe(title, ingredients, time_required, servings):
 
     return recipe
 
+
 def all_recipes():
     """Returns all recipes"""
 
     return Recipe.query.all()
-    
+
 
 def link_recipe_to_cookbook(cookbook_id, recipe_id):
     """Link a recipe to a cookbook and return linkage object"""
@@ -62,6 +71,7 @@ def link_recipe_to_cookbook(cookbook_id, recipe_id):
     db.session.commit()
 
     return cookbook_recipe
+
 
 def create_step(recipe_id, step_number, body, media=None):
     """Create and return a recipe step"""

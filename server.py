@@ -19,6 +19,18 @@ def get_user_cookbooks():
 
     return jsonify(cookbook_list)
 
+@app.route('/api/auth-user', methods=["POST"])
+def authenticate_user():
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
+    
+    user = {"email": email, "password": password}
+
+    correct_password = crud.get_user_by_email(email).password
+
+    return jsonify(user["password"] == correct_password)
+
 
 if __name__ == '__main__':
     connect_to_db(app)

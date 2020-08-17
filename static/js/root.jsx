@@ -53,14 +53,50 @@ function Cookbook() {
 }
 
 function Login() {
+
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    //whenever the user makes a change, update the corresponding
+    const handleEmailChange = (evt) => {setEmail(evt.currentTarget.value)};
+    const handlePasswordChange = (evt) => {setPassword(evt.currentTarget.value)};
+
+    const authenticateUser = () => {
+        const user = {
+            email: email,
+            password: password
+          };
+
+        fetch('api/auth-user', {method: 'POST', 
+                                 body: JSON.stringify(user), 
+                                headers: {'Accept': 'application/json',
+                                'Content-Type': 'application/json'}})
+        .then((res) => res.json())
+        .then((data) => {
+            if (data === true) {
+                return <Homepage />;
+            } else {
+                alert('Password does not match.');
+        }
+    });
+    }
+
     return (
         <div>
             Email:
-            <input type="text" name="email"></input>
+            <input type="text" 
+                id="emailField" 
+                onChange={handleEmailChange} 
+                value={email}>
+            </input>
             Password:
-            <input type="text" name="password"></input>
-            <button>Log In</button>
-            <button>Create Account</button>
+            <input type="text" 
+                id="passwordField" 
+                onChange={handlePasswordChange} 
+                value={password}>
+            </input>
+            <button onClick={authenticateUser}>Log In</button>
+            {/* <button onClick={createAccount}>Create Account</button> */}
         </div>
     )
 }
