@@ -74,7 +74,7 @@ function Login() {
         .then((res) => res.json())
         .then((data) => {
             if (data === true) {
-                return <Homepage />;
+                return <Redirect to="/" />;
             } else {
                 alert('Password does not match.');
         }
