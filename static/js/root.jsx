@@ -53,7 +53,16 @@ function Cookbook() {
 }
 
 function Login() {
-    return <h1>Login/Create Account</h1>
+    return (
+        <div>
+            Email:
+            <input type="text" name="email"></input>
+            Password:
+            <input type="text" name="password"></input>
+            <button>Log In</button>
+            <button>Create Account</button>
+        </div>
+    )
 }
 
 function NavBar() {
