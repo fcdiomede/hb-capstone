@@ -42,6 +42,13 @@ def all_cookbooks():
 
     return Cookbook.query.all() 
 
+def cookbooks_by_user_id(user_id):
+    """Return a list of all cookbooks for a particular user"""
+
+    user = User.query.get(user_id)
+
+    return user.cookbook
+
 
 def create_recipe(title, ingredients, time_required, servings):
     """Create and return a new recipe"""

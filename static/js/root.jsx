@@ -4,6 +4,7 @@ const Link =  ReactRouterDOM.Link;
 const Prompt =  ReactRouterDOM.Prompt;
 const Switch = ReactRouterDOM.Switch;
 const Redirect = ReactRouterDOM.Redirect;
+const useHistory = ReactRouterDOM.useHistory;
 
 //specific cookbook card component
 function CookbookCover(props) {
@@ -63,49 +64,47 @@ function Login() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    //whenever the user makes a change, update the corresponding state
-    const handleEmailChange = (evt) => {setEmail(evt.currentTarget.value)};
-    const handlePasswordChange = (evt) => {setPassword(evt.currentTarget.value)};
+    let history = useHistory();
 
     //makes a server request to authenticate password typed in
-    const authenticateUser = () => {
-        const user = {
-            email: email,
-            password: password
-          };
+    const authenticateUser = (event) => {
+        event.preventDefault();
 
-        fetch('api/auth-user', {method: 'POST', 
-                                 body: JSON.stringify(user), 
+        //format user data to send to server        
+        const user = {'email': email, 'password': password};
+
+        fetch('/api/login', {method: 'POST', 
+                                body: JSON.stringify(user), 
                                 headers: {'Accept': 'application/json',
                                 'Content-Type': 'application/json'}})
         .then((res) => res.json())
         .then((data) => {
-            if (data === true) {
-                return <Redirect to="/" />;
+            if (data.status == "success") {
+                history.push('/');
             } else {
-                alert('Password does not match.');
+                alert('Email/Password combination is incorrect.');
         }
     });
     }
 
     //login form
     return (
-        <div>
-            Email:
-            <input type="text" 
-                id="emailField" 
-                onChange={handleEmailChange} 
+        <form>
+            <label>Email:</label>
+            <input type='text'
+                id='email'
+                onChange={(evt) => setEmail(evt.target.value)} 
                 value={email}>
             </input>
-            Password:
-            <input type="text" 
-                id="passwordField" 
-                onChange={handlePasswordChange} 
+            <label>Password:</label>
+            <input type='password' 
+                id='password'
+                onChange={(evt) => setPassword(evt.currentTarget.value)}
                 value={password}>
             </input>
             <button onClick={authenticateUser}>Log In</button>
-            {/* <button onClick={createAccount}>Create Account</button> */}
-        </div>
+            {/* <button onClick={createAccount}>Create Account</button> * */}
+        </form>
     )
 }
 
@@ -116,24 +115,24 @@ function NavBar() {
         <nav>
             <ul>
             <li>
-                <Link to="/"> Home </Link>
+                <Link to='/'> Home </Link>
             </li>
             <li>
-                <Link to="/cookbook"> Cookbooks </Link>
+                <Link to='/cookbook'> Cookbooks </Link>
             </li>
             <li>
-                <Link to="/login"> Logout </Link>
+                <Link to='/login'> Logout </Link>
             </li>
             </ul>
         </nav>
         <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
                 <Homepage />
             </Route>
-            <Route path="/cookbook">
+            <Route path='/cookbook'>
                 <Cookbook />
             </Route>
-            <Route path="/login">
+            <Route path='/login'>
                 <Login />
             </Route>
         </Switch>

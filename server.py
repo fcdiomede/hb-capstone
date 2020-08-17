@@ -1,9 +1,10 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session
 from model import connect_to_db
 import crud
 
 
 app = Flask(__name__)
+app.secret_key = "outofthefryingpan"
 
 @app.route('/')
 def root():
@@ -11,7 +12,11 @@ def root():
 
 @app.route('/api/user-cookbooks')
 def get_user_cookbooks():
-    cookbooks = crud.all_cookbooks()
+
+    # user_id = session["user_id"]
+    user_id = 1
+
+    cookbooks = crud.cookbooks_by_user_id(user_id)
     cookbook_list = []
 
     for c in cookbooks:
@@ -19,21 +24,36 @@ def get_user_cookbooks():
                             "title": c.title, 
                             "imgUrl": c.cover_img})
 
+    print(user_id)
+    print(cookbook_list)
+    
     return jsonify(cookbook_list)
 
-@app.route('/api/auth-user', methods=["POST"])
+
+@app.route('/api/login', methods=['POST'])
 def authenticate_user():
+    print("--------IN THE SERVER-----------")
     data = request.get_json()
+    print("DATA:", data)
     email = data["email"]
     password = data["password"]
+
+
+    user = crud.get_user_by_email(email)
+
+    print("USER:", user)
+
+    if user and password == user.password:
+        session["user_id"] = user.user_id
+        status = "success"
+    else:
+        status = "error"
     
-    user = {"email": email, "password": password}
+    print("RESULT STATUS", {'status':status})
 
-    correct_password = crud.get_user_by_email(email).password
-
-    return jsonify(user["password"] == correct_password)
+    return jsonify({'status':status})
 
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0')
