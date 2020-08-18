@@ -26,6 +26,24 @@ def get_user_cookbooks():
     return jsonify(cookbook_list)
 
 
+@app.route('/api/cookbook-details/<cookbook_id>')
+def get_cookbook_details(cookbook_id):
+
+    data = []
+
+    recipes = crud.get_cookbook_recipes(cookbook_id)
+
+    for recipe in recipes:
+        data.append({"key": recipe.recipe_id,
+                    "title": recipe.title,
+                    "ingredients": recipe.ingredients,
+                    "time_required": recipe.time_requried,
+                    "servings": recipe.servings,
+                    "steps":[recipe.steps]})
+    
+    return jsonify(data)
+
+
 @app.route('/api/login', methods=['POST'])
 def authenticate_user():
     data = request.get_json()

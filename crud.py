@@ -50,6 +50,20 @@ def cookbooks_by_user_id(user_id):
     return user.cookbook
 
 
+def cookbook_by_id(cookbook_id):
+    """Return cookbook object for specific cookbook id"""
+
+    return Cookbook.query.get(cookbook_id)
+
+
+def get_cookbook_recipes(cookbook_id):
+    """Return all recipes associated with a cookbook"""
+
+    cookbook = cookbook_by_id(cookbook_by_id)
+
+    return cookbook.recipies
+
+
 def create_recipe(title, ingredients, time_required, servings):
     """Create and return a new recipe"""
 
