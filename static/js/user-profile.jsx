@@ -57,7 +57,13 @@ function CookbookContainer() {
       );
 }
 
+function CreateNewCookbook() {
+    return (
+        <button>Create New Cookbook</button>
+    )
+}
 
+//main page component
 function Homepage() {
 
     // let history = useHistory();
@@ -70,5 +76,10 @@ function Homepage() {
     //     }
     // })
 
-    return <CookbookContainer />
+    return (
+        <React.Fragment>
+            <CreateNewCookbook />
+            <CookbookContainer />
+        </React.Fragment>
+    ) 
 }
