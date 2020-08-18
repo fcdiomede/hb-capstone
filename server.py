@@ -26,9 +26,18 @@ def get_user_cookbooks():
     return jsonify(cookbook_list)
 
 
-@app.route('/api/cookbook-details')
-def get_cookbook_details(cookbook_id=1):
+@app.route('/api/set-cookbook', methods=['POST'])
+def set_cookbook():
+    data = request.get_json()
+    cookbook_id = data["cookbook_id"]
+    session["cookbook_id"] = cookbook_id
+    print(session)
+    return jsonify("success")
 
+@app.route('/api/cookbook-details')
+def get_cookbook_details():
+
+    cookbook_id = session["cookbook_id"]
     recipes = crud.get_cookbook_recipes(cookbook_id)
     data = []
 

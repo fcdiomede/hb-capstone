@@ -10,12 +10,17 @@ const useHistory = ReactRouterDOM.useHistory;
 
 //specific cookbook card component
 function CookbookCover(props) {
+
     let history = useHistory()
 
-    const goToCookbook =() => {
-        fetch(`/api/cookbook-details/${props.key}`)
-        .then((res => res.json()))
-        .then(history.push('/cookbook'));
+    const data = {'cookbook_id': props.cookbook_id}
+
+    const goToCookbook = () => {
+        fetch('/api/set-cookbook', {method: 'POST', 
+        body: JSON.stringify(data), 
+        headers: {'Accept': 'application/json',
+        'Content-Type': 'application/json'}})
+        .then(() => history.push('/cookbook'));
     }
 
     return (
@@ -46,6 +51,7 @@ function CookbookContainer() {
         userCookbooks.push(
           <CookbookCover
             key={cookbook.key}
+            cookbook_id={cookbook.key}
             title={cookbook.title}
             imgUrl={cookbook.imgUrl}
           />
