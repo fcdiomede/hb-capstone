@@ -58,8 +58,15 @@ function CookbookContainer() {
 }
 
 function CreateNewCookbook() {
+
+    let history = useHistory();
+
+    const goToCreateCookbookForm = () => {
+        history.push('/create-new-cookbook')
+    }
+
     return (
-        <button>Create New Cookbook</button>
+        <button onClick={goToCreateCookbookForm}>Create New Cookbook</button>
     )
 }
 

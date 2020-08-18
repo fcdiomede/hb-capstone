@@ -38,6 +38,9 @@ function NavBar() {
             <Route path='/login'>
                 <Login />
             </Route>
+            <Route path='/create-new-cookbook'>
+                <NewCookbookForm />
+            </Route>
         </Switch>
         </div>
     </Router>
