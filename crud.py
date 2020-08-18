@@ -59,9 +59,9 @@ def cookbook_by_id(cookbook_id):
 def get_cookbook_recipes(cookbook_id):
     """Return all recipes associated with a cookbook"""
 
-    cookbook = cookbook_by_id(cookbook_by_id)
+    cookbook = cookbook_by_id(cookbook_id)
 
-    return cookbook.recipies
+    return cookbook.recipes
 
 
 def create_recipe(title, ingredients, time_required, servings):

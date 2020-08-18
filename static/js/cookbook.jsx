@@ -29,8 +29,16 @@ function NewCookbookForm() {
 function RecipeDetails () {
     return <p> This will be the details </p>
 }
+ 
 
 function RecipeList () {
+    
+    React.useEffect(() => {
+        fetch('/api/cookbook-details')
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+    }, []);
+
     return <p>This will be a list of all recipes</p>
 }
 
