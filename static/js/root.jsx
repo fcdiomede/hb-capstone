@@ -73,14 +73,20 @@ function Cookbook() {
     return <h2>This is a cookbook!</h2>
 }
 
-function CreateAccount() {
+function CreateAccount(props) {
 
-    const addUser = () => {
-       alert("Hi!")
+    const addUser = (event) => {
+        event.preventDefault()
+        alert("Hi!")
     }
 
     const [fname, setFName] = React.useState('');
     const [lname, setLName] = React.useState('');
+
+    const hideCreateAccount = () => {
+        props.setShowCreateAccount(false)
+        props.setVisible('visible')
+    }
 
     return (<React.Fragment>
          <label>First Name:</label>
@@ -95,6 +101,7 @@ function CreateAccount() {
                 value={lname}></input>
         
         <button onClick={addUser}>Create Account</button> 
+        <button onClick={hideCreateAccount}> Back </button>
     </React.Fragment>)
 }
 
@@ -108,6 +115,7 @@ function Login() {
 
     //track button push
     const [showCreateAccount, setShowCreateAccount] = React.useState(false);
+    const[visible, setVisible] = React.useState('visible')
 
     let history = useHistory();
 
@@ -137,6 +145,7 @@ function Login() {
     const createAccount = (event) => {
         event.preventDefault();
         setShowCreateAccount(true)
+        setVisible('hidden')
     }
 
     //login form
@@ -154,9 +163,17 @@ function Login() {
                 onChange={(evt) => setPassword(evt.currentTarget.value)}
                 value={password}>
             </input>
-            <button onClick={authenticateUser}>Log In</button>
-            <button onClick={createAccount}>Create Account</button>
-            { showCreateAccount ? <CreateAccount /> : null }
+            <button onClick={authenticateUser} style={{visibility: visible}}>
+                Log In
+            </button>
+            <button onClick={createAccount} style={{visibility: visible}}>
+                Create Account
+            </button>
+            { showCreateAccount ? <CreateAccount 
+                                    setVisible={setVisible}
+                                    setShowCreateAccount={setShowCreateAccount}
+                                    email={email}
+                                    password={password}/> : null }
         </form>
     )
 }
