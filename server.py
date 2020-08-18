@@ -13,9 +13,8 @@ def root():
 @app.route('/api/user-cookbooks')
 def get_user_cookbooks():
 
-    # user_id = session["user_id"]
-    user_id = 1
-
+    user_id = session["user_id"]
+    
     cookbooks = crud.cookbooks_by_user_id(user_id)
     cookbook_list = []
 
@@ -26,22 +25,17 @@ def get_user_cookbooks():
 
     print(user_id)
     print(cookbook_list)
-    
+
     return jsonify(cookbook_list)
 
 
 @app.route('/api/login', methods=['POST'])
 def authenticate_user():
-    print("--------IN THE SERVER-----------")
     data = request.get_json()
-    print("DATA:", data)
     email = data["email"]
     password = data["password"]
 
-
     user = crud.get_user_by_email(email)
-
-    print("USER:", user)
 
     if user and password == user.password:
         session["user_id"] = user.user_id
@@ -49,8 +43,6 @@ def authenticate_user():
     else:
         status = "error"
     
-    print("RESULT STATUS", {'status':status})
-
     return jsonify({'status':status})
 
 

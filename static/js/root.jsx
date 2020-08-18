@@ -8,8 +8,14 @@ const useHistory = ReactRouterDOM.useHistory;
 
 //specific cookbook card component
 function CookbookCover(props) {
+    let history = useHistory()
+
+    const goToCookbook =() => {
+        history.push('/cookbook');
+    }
+
     return (
-        <div className="cookbook">
+        <div className="cookbook" onClick={goToCookbook}>
           <p>Name: {props.title}</p>
           <img src={props.imgUrl} />
         </div>
@@ -30,7 +36,7 @@ function CookbookContainer() {
       .then((res) => res.json())
       .then((data) => updateCookbooks(data))
     }, []);
-   
+
     const userCookbooks = []
     for (const cookbook of cookbooks) {
         userCookbooks.push(
@@ -49,6 +55,7 @@ function CookbookContainer() {
 
 
 function Homepage() {
+
     return <CookbookContainer />
 }
 
@@ -59,7 +66,7 @@ function Cookbook() {
 //login form component
 //handles authenticating password
 function Login() {
-
+    
     //track email and password enters
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
