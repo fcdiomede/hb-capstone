@@ -23,9 +23,6 @@ def get_user_cookbooks():
                             "title": c.title, 
                             "imgUrl": c.cover_img})
 
-    print(user_id)
-    print(cookbook_list)
-
     return jsonify(cookbook_list)
 
 
@@ -45,7 +42,24 @@ def authenticate_user():
     
     return jsonify({'status':status})
 
+@app.route('/api/create-account', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
+
+# @app.route('/api/clear-cookies')
+# def clear_cookies():
+#     print(session["user_id"])
+#     session.pop("user_id")
+#     print(session["user_id"])
+
+
+# @app.route('/api/check-cookies')
+# def is_user_id_stored():
+#     return "user_id" in session
 
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0')
+

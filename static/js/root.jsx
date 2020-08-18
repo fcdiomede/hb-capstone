@@ -56,11 +56,46 @@ function CookbookContainer() {
 
 function Homepage() {
 
+    // let history = useHistory();
+
+    // fetch('/api/check-cookies')
+    // .then((res) => res.json())
+    // .then((data) => {
+    //     if (!data) {
+    //         history.push('/login')
+    //     }
+    // })
+
     return <CookbookContainer />
 }
 
 function Cookbook() {
     return <h2>This is a cookbook!</h2>
+}
+
+function CreateAccount() {
+
+    const addUser = () => {
+       alert("Hi!")
+    }
+
+    const [fname, setFName] = React.useState('');
+    const [lname, setLName] = React.useState('');
+
+    return (<React.Fragment>
+         <label>First Name:</label>
+            <input type='text'
+                id='fname'
+                onChange={(evt) => setFName(evt.target.value)} 
+                value={fname}></input>
+        <label>Last Name:</label>
+            <input type='text'
+                id='lname'
+                onChange={(evt) => setLName(evt.target.value)} 
+                value={lname}></input>
+        
+        <button onClick={addUser}>Create Account</button> 
+    </React.Fragment>)
 }
 
 //login form component
@@ -70,6 +105,9 @@ function Login() {
     //track email and password enters
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+
+    //track button push
+    const [showCreateAccount, setShowCreateAccount] = React.useState(false);
 
     let history = useHistory();
 
@@ -94,6 +132,13 @@ function Login() {
     });
     }
 
+    //callback for creating an account
+    //directs to account creation component
+    const createAccount = (event) => {
+        event.preventDefault();
+        setShowCreateAccount(true)
+    }
+
     //login form
     return (
         <form>
@@ -110,12 +155,16 @@ function Login() {
                 value={password}>
             </input>
             <button onClick={authenticateUser}>Log In</button>
-            {/* <button onClick={createAccount}>Create Account</button> * */}
+            <button onClick={createAccount}>Create Account</button>
+            { showCreateAccount ? <CreateAccount /> : null }
         </form>
     )
 }
 
 function NavBar() {
+
+    // const clearCookies = () => {fetch('/api/clear-cookies')}
+
     return <React.Fragment>
         <Router>
         <div>
