@@ -26,20 +26,42 @@ function NewCookbookForm() {
    )
 }
 
-function RecipeDetails () {
-    return <p> This will be the details </p>
+function RecipeDetails (props) {
+    return <div>
+        <p> Title: {props.title}</p>
+        <p> ingredients: {props.ingredients}</p>
+        <p> 
+            time required: {props.time_required}
+            servings: {props.servings}
+        </p>
+    </div>
 }
- 
+
+function RecipeListItem(props) {
+    return <li> {props.title} </li>
+}
 
 function RecipeList () {
-    
+
+    const [recipes, updateRecipes] = React.useState(["Loading..."])
+
     React.useEffect(() => {
         fetch('/api/cookbook-details')
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => updateRecipes(data))
     }, []);
 
-    return <p>This will be a list of all recipes</p>
+    const cookbookRecipes = []
+    for (const recipe of recipes) {
+        cookbookRecipes.push(
+            <RecipeListItem
+                key={recipe.key}
+                title={recipe.title}
+            />
+        )
+    }
+
+    return <ul>{cookbookRecipes}</ul>
 }
 
 
