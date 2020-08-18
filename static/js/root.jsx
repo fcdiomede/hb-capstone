@@ -75,17 +75,38 @@ function Cookbook() {
 
 function CreateAccount(props) {
 
-    const addUser = (event) => {
-        event.preventDefault()
-        alert("Hi!")
-    }
-
     const [fname, setFName] = React.useState('');
     const [lname, setLName] = React.useState('');
 
     const hideCreateAccount = () => {
         props.setShowCreateAccount(false)
         props.setVisible('visible')
+    }
+
+    let history = useHistory();
+
+    const addUser = () => {
+        event.preventDefault();
+
+        //format user data to send to server        
+        const user = {'email': props.email, 
+                    'password': props.password,
+                    'fname': fname,
+                    'lname': lname};
+
+        fetch('/api/create-account', {method: 'POST', 
+                                body: JSON.stringify(user), 
+                                headers: {'Accept': 'application/json',
+                                'Content-Type': 'application/json'}})
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.status == "success") {
+                alert("Success! Account has been created.")
+                history.push('/');
+            } else {
+                alert('This user already exists. Try logging in.');
+        }
+    });
     }
 
     return (<React.Fragment>

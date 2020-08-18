@@ -47,6 +47,24 @@ def create_user():
     data = request.get_json()
     email = data["email"]
     password = data["password"]
+    fname = data["fname"]
+    lname = data["lname"]
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        status = "error"
+    else:
+        status = "success"
+        new_user = crud.create_user(
+                        fname=fname,
+                        lname=lname,
+                        email=email,
+                        password=password)
+        session["user_id"] = new_user.user_id
+    
+    return jsonify({'status':status})
+    
 
 # @app.route('/api/clear-cookies')
 # def clear_cookies():
