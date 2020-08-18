@@ -19,14 +19,30 @@ function NewCookbookForm() {
            <input type='file' 
                id='coverImg'
                accept="image/png, image/jpg"
-               enctype="multipart/form-data">
+               encType="multipart/form-data">
            </input>
            <button>Create It!</button>
        </form>
    )
 }
 
+function RecipeDetails () {
+    return <p> This will be the details </p>
+}
+
+function RecipeList () {
+    return <p>This will be a list of all recipes</p>
+}
+
+
 
 function Cookbook() {
-    return <h2>This is a cookbook!</h2>
+    return (
+        <React.Fragment>
+            <h2>This is a cookbook!</h2>
+            <CreateNewCookbook />
+            <RecipeList />
+            <RecipeDetails />
+       </React.Fragment>
+    )
 }
