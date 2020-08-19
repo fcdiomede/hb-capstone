@@ -35,6 +35,8 @@ def set_cookbook():
     print(session)
     return jsonify({'data_id': data_id})
 
+
+
 @app.route('/api/cookbook-details')
 def get_cookbook_details():
 
@@ -52,6 +54,10 @@ def get_cookbook_details():
     
     return jsonify(data)
 
+
+@app.route('/api/recipe-steps')
+def get_recipe_steps():
+    recipe_id = session["recipe_id"]
 
 
 @app.route('/api/login', methods=['POST'])

@@ -106,6 +106,14 @@ def create_step(recipe_id, step_number, body, media=None):
     return step
 
 
+def recipe_by_id(recipe_id):
+
+    return Recipe.query.get(recipe_id)
+
+def steps_for_recipe(recipe_id):
+    pass
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
