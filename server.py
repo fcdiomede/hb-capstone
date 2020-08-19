@@ -26,13 +26,14 @@ def get_user_cookbooks():
     return jsonify(cookbook_list)
 
 
-@app.route('/api/set-cookbook', methods=['POST'])
+@app.route('/api/set-data', methods=['POST'])
 def set_cookbook():
     data = request.get_json()
-    cookbook_id = data["cookbook_id"]
-    session["cookbook_id"] = cookbook_id
+    data_to_set = data["item"]
+    data_id = data["data_id"]
+    session[data_to_set] = data_id
     print(session)
-    return jsonify("success")
+    return jsonify({'data_id': data_id})
 
 @app.route('/api/cookbook-details')
 def get_cookbook_details():

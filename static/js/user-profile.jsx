@@ -13,10 +13,11 @@ function CookbookCover(props) {
 
     let history = useHistory()
 
-    const data = {'cookbook_id': props.cookbook_id}
+    const data = {'data_id': props.cookbook_id,
+                  'item': 'cookbook_id'}
 
     const goToCookbook = () => {
-        fetch('/api/set-cookbook', {method: 'POST', 
+        fetch('/api/set-data', {method: 'POST', 
         body: JSON.stringify(data), 
         headers: {'Accept': 'application/json',
         'Content-Type': 'application/json'}})

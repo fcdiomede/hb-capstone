@@ -27,36 +27,56 @@ function NewCookbookForm() {
 }
 
 function RecipeDetails (props) {
+
+    const currentRecipeId = props.currentRecipe.data_id
+    const currentRecipeDetails = []
+
+    console.log(props)
+
+    for (const recipe of props.allRecipes) {
+        if (recipe.key === currentRecipeId) {
+            currentRecipeDetails.push(recipe)
+        }
+    }
+    console.log(currentRecipeDetails)
+
     return <div>
-        <p> Title: {props.title}</p>
-        <p> ingredients: {props.ingredients}</p>
+        <p> Title: {currentRecipeDetails.title}</p>
+        <p> ingredients: {currentRecipeDetails.ingredients}</p>
         <p> 
-            time required: {props.time_required}
-            servings: {props.servings}
+            time required: {currentRecipeDetails.time_required}
+            servings: {currentRecipeDetails.servings}
         </p>
     </div>
 }
 
 function RecipeListItem(props) {
-    return <li> {props.title} </li>
+
+    let data = {'data_id': props.recipe_id,
+            'item': 'recipe_id'}
+
+    const goToRecipe = () => {
+        fetch('/api/set-data', {method: 'POST', 
+        body: JSON.stringify(data), 
+        headers: {'Accept': 'application/json',
+        'Content-Type': 'application/json'}})
+        .then((res) => res.json())
+        .then((data) => props.setCurrentRecipe(data))
+    }
+
+    return <li onClick={goToRecipe}> {props.title} </li>
 }
 
-function RecipeList () {
-
-    const [recipes, updateRecipes] = React.useState(["Loading..."])
-
-    React.useEffect(() => {
-        fetch('/api/cookbook-details')
-        .then((res) => res.json())
-        .then((data) => updateRecipes(data))
-    }, []);
+function RecipeList (props) {
 
     const cookbookRecipes = []
-    for (const recipe of recipes) {
+    for (const recipe of props.recipes) {
         cookbookRecipes.push(
             <RecipeListItem
                 key={recipe.key}
+                recipe_id={recipe.key}
                 title={recipe.title}
+                setCurrentRecipe={props.setCurrentRecipe}
             />
         )
     }
@@ -67,12 +87,24 @@ function RecipeList () {
 
 
 function Cookbook() {
+
+    const [recipes, setRecipes] = React.useState([])
+    const [currentRecipe, setCurrentRecipe] = React.useState('')
+
+
+    React.useEffect(() => {
+        fetch('/api/cookbook-details')
+        .then((res) => res.json())
+        .then((data) => setRecipes(data))
+    }, []);
+
+
     return (
         <React.Fragment>
             <h2>This is a cookbook!</h2>
             <CreateNewCookbook />
-            <RecipeList />
-            <RecipeDetails />
+            <RecipeList recipes={recipes} setCurrentRecipe={setCurrentRecipe}/>
+            <RecipeDetails currentRecipe={currentRecipe} allRecipes={recipes}/>
        </React.Fragment>
     )
 }
