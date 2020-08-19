@@ -59,6 +59,15 @@ def get_cookbook_details():
 def get_recipe_steps():
     recipe_id = session["recipe_id"]
 
+    steps = crud.get_steps_for_recipe(recipe_id)
+    
+    instructions = []
+    for i, step in enumerate(steps):
+        instructions.append({"num":i+1, "body":step})
+    
+    return jsonify(steps)
+
+
 
 @app.route('/api/login', methods=['POST'])
 def authenticate_user():
