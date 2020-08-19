@@ -26,11 +26,36 @@ function NewCookbookForm() {
    )
 }
 
+function RecipeStep (props) {
+    return (
+        <div>
+            <p> {props.num} {props.body} </p>
+        </div>
+    )
+}
+
 function RecipeDetails (props) {
 
     const currentRecipeId = props.currentRecipe.data_id
 
-    console.log(props)
+    const [steps, setSteps] = React.useState('')
+
+    React.useEffect(() => {
+        fetch('/api/recipe-steps')
+        .then((res) => res.json())
+        .then((data) => setSteps(data))
+      }, [currentRecipeId]);
+
+      const recipeSteps = []
+      for (const step of steps) {
+        recipeSteps.push(
+          <RecipeStep
+            key={step.key}
+            num={step.num}
+            body={step.body}
+          />
+        );
+      }
 
     for (const recipe of props.allRecipes) {
         if (recipe.key === currentRecipeId) {
@@ -46,6 +71,7 @@ function RecipeDetails (props) {
             time required: {props.recipeDetails.time_required}
             servings: {props.recipeDetails.servings}
         </p>
+        <p>{recipeSteps}</p>
     </div>
 }
 

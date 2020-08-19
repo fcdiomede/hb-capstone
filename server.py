@@ -60,12 +60,15 @@ def get_recipe_steps():
     recipe_id = session["recipe_id"]
 
     steps = crud.get_steps_for_recipe(recipe_id)
+    data = []
+
+    for step in steps:
+        data.append({"key": step.step_id,
+                    "num":step.step_number, 
+                    "body":step.body})
     
-    instructions = []
-    for i, step in enumerate(steps):
-        instructions.append({"num":i+1, "body":step})
     
-    return jsonify(steps)
+    return jsonify(data)
 
 
 
