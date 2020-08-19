@@ -50,6 +50,7 @@ class Recipe(db.Model):
     ingredients = db.Column(db.Text)
     time_required = db.Column(db.String)
     servings = db.Column(db.Integer)
+    media = db.Column(db.String)
 
     cookbooks = db.relationship('Cookbook', secondary="cookbook_recipes")
     steps = db.relationship('Step')

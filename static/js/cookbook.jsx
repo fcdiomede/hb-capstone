@@ -29,23 +29,21 @@ function NewCookbookForm() {
 function RecipeDetails (props) {
 
     const currentRecipeId = props.currentRecipe.data_id
-    const currentRecipeDetails = []
 
     console.log(props)
 
     for (const recipe of props.allRecipes) {
         if (recipe.key === currentRecipeId) {
-            currentRecipeDetails.push(recipe)
+            props.setRecipeDetails(recipe)
         }
     }
-    console.log(currentRecipeDetails)
 
     return <div>
-        <p> Title: {currentRecipeDetails.title}</p>
-        <p> ingredients: {currentRecipeDetails.ingredients}</p>
+        <p> Title: {props.recipeDetails.title}</p>
+        <p> ingredients: {props.recipeDetails.ingredients}</p>
         <p> 
-            time required: {currentRecipeDetails.time_required}
-            servings: {currentRecipeDetails.servings}
+            time required: {props.recipeDetails.time_required}
+            servings: {props.recipeDetails.servings}
         </p>
     </div>
 }
@@ -90,6 +88,7 @@ function Cookbook() {
 
     const [recipes, setRecipes] = React.useState([])
     const [currentRecipe, setCurrentRecipe] = React.useState('')
+    const [recipeDetails, setRecipeDetails] = React.useState('')
 
 
     React.useEffect(() => {
@@ -104,7 +103,8 @@ function Cookbook() {
             <h2>This is a cookbook!</h2>
             <CreateNewCookbook />
             <RecipeList recipes={recipes} setCurrentRecipe={setCurrentRecipe}/>
-            <RecipeDetails currentRecipe={currentRecipe} allRecipes={recipes}/>
+            <RecipeDetails currentRecipe={currentRecipe} allRecipes={recipes}
+                            recipeDetails={recipeDetails} setRecipeDetails={setRecipeDetails}/>
        </React.Fragment>
     )
 }

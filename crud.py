@@ -64,11 +64,11 @@ def get_cookbook_recipes(cookbook_id):
     return cookbook.recipes
 
 
-def create_recipe(title, ingredients, time_required, servings):
+def create_recipe(title, ingredients, time_required, servings, media=None):
     """Create and return a new recipe"""
 
     recipe = Recipe(title=title, ingredients=ingredients, 
-                    time_required=time_required, servings=servings)
+                    time_required=time_required, servings=servings, media=media)
 
     db.session.add(recipe)
     db.session.commit()
