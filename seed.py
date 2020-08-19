@@ -7,6 +7,8 @@ import crud
 import model
 import server
 
+from api import data_for_db
+
 os.system('dropdb recipeapp')
 os.system('createdb recipeapp')
 
@@ -15,11 +17,13 @@ model.db.create_all()
 
 fake = Faker()
 
+recipes_for_db = data_for_db()
+
 #create fake users
 for i in range(10):
     fname = fake.first_name()
     lname = fake.last_name()
-    email = fake.email()
+    email = f"{fname[0]}{lname}@email.com"
     password = "test"
 
     user = crud.create_user(fname, lname, email, password)
@@ -29,7 +33,7 @@ users = crud.all_users()
 
 for user in users:
     for i in range(2):
-        cookbook_title = fake.word()
+        cookbook_title = choice(['Dinner', 'Lunch', 'Dessert','Breakfast'])
         cookbook_img = f"/static/img/cooking_{randint(1,7)}.jpg"
 
         cookbook = crud.create_cookbook(cookbook_title, cookbook_img, 
@@ -40,29 +44,22 @@ cookbooks = crud.all_cookbooks()
 
 for cookbook in cookbooks:
     for i in range(2):
-        recipe_title = fake.word()
-        num_ingredients = randint(1,10)
-        ingredients= fake.words(num_ingredients)
-        time_required = f"{randint(1,30)} mins"
-        servings = randint(1,8)
+        random_recipe = choice(recipes_for_db)
+        recipe_title = random_recipe['title']
+        time_required = f"{random_recipe['time_required']} mins"
+        servings = random_recipe['servings']
+        ingredients = (", ").join(random_recipe['ingredients'])
 
-        recipe = crud.create_recipe(recipe_title, ingredients, time_required, 
+        new_recipe = crud.create_recipe(recipe_title, ingredients, time_required, 
                                 servings)
 
         #link recipe to the cookbook
-        crud.link_recipe_to_cookbook(cookbook.cookbook_id, recipe.recipe_id)
+        crud.link_recipe_to_cookbook(cookbook.cookbook_id, new_recipe.recipe_id)
 
-#create steps in each recipe
-recipes = crud.all_recipes()
-
-for recipe in recipes:
-    num_steps = randint(1,5)
-    for step in range(1,num_steps+1):
-        body = fake.text()
-        does_step_have_img = choice([True, False])
-        if does_step_have_img:
-            media = f"/static/img/cooking_{randint(1,7)}.jpg"
-        else:
-            media = None
-        
-        crud.create_step(recipe.recipe_id, step, body, media)
+        steps = random_recipe['steps']['instructions']
+        print(steps)
+        for step_number, step in enumerate(steps):
+            number = step_number + 1
+            body = step
+            
+            crud.create_step(new_recipe.recipe_id, number, body)

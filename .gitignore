@@ -2,3 +2,5 @@ env/
 *.pyc
 secerts.sh
 to-do.txt
+api.py
+api_results.py
