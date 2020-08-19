@@ -50,7 +50,7 @@ def cookbooks_by_user_id(user_id):
     return user.cookbook
 
 
-def cookbook_by_id(cookbook_id):
+def get_cookbook_by_id(cookbook_id):
     """Return cookbook object for specific cookbook id"""
 
     return Cookbook.query.get(cookbook_id)
@@ -59,7 +59,7 @@ def cookbook_by_id(cookbook_id):
 def get_cookbook_recipes(cookbook_id):
     """Return all recipes associated with a cookbook"""
 
-    cookbook = cookbook_by_id(cookbook_id)
+    cookbook = get_cookbook_by_id(cookbook_id)
 
     return cookbook.recipes
 
@@ -106,12 +106,15 @@ def create_step(recipe_id, step_number, body, media=None):
     return step
 
 
-def recipe_by_id(recipe_id):
+def get_recipe_by_id(recipe_id):
 
     return Recipe.query.get(recipe_id)
 
-def steps_for_recipe(recipe_id):
-    pass
+def get_steps_for_recipe(recipe_id):
+    
+    recipe = get_recipe_by_id(recipe_id)
+
+    return recipe.steps
 
 
 if __name__ == '__main__':
