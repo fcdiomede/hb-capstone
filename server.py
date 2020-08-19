@@ -47,7 +47,8 @@ def get_cookbook_details():
                     "title": recipe.title,
                     "ingredients": recipe.ingredients,
                     "time_required": recipe.time_required,
-                    "servings": recipe.servings})
+                    "servings": recipe.servings,
+                    "media": recipe.media})
     
     return jsonify(data)
 

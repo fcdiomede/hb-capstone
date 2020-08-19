@@ -48,10 +48,11 @@ for cookbook in cookbooks:
         recipe_title = random_recipe['title']
         time_required = f"{random_recipe['time_required']} mins"
         servings = random_recipe['servings']
+        media = random_recipe['image']
         ingredients = (", ").join(random_recipe['ingredients'])
 
         new_recipe = crud.create_recipe(recipe_title, ingredients, time_required, 
-                                servings)
+                                servings, media)
 
         #link recipe to the cookbook
         crud.link_recipe_to_cookbook(cookbook.cookbook_id, new_recipe.recipe_id)

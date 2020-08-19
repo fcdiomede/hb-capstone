@@ -114,7 +114,8 @@ CREATE TABLE public.recipes (
     title character varying NOT NULL,
     ingredients text,
     time_required character varying,
-    servings integer
+    servings integer,
+    media character varying
 );
 
 
@@ -305,26 +306,26 @@ COPY public.cookbook_recipes (cookbook_recipe_id, cookbook_id, recipe_id) FROM s
 --
 
 COPY public.cookbooks (cookbook_id, title, cover_img, user_id) FROM stdin;
-1	Dinner	/static/img/cooking_3.jpg	1
-2	Breakfast	/static/img/cooking_5.jpg	1
-3	Lunch	/static/img/cooking_6.jpg	2
-4	Lunch	/static/img/cooking_1.jpg	2
-5	Lunch	/static/img/cooking_5.jpg	3
-6	Breakfast	/static/img/cooking_5.jpg	3
-7	Breakfast	/static/img/cooking_3.jpg	4
-8	Lunch	/static/img/cooking_7.jpg	4
-9	Dessert	/static/img/cooking_4.jpg	5
-10	Lunch	/static/img/cooking_7.jpg	5
-11	Breakfast	/static/img/cooking_4.jpg	6
-12	Breakfast	/static/img/cooking_2.jpg	6
-13	Dessert	/static/img/cooking_2.jpg	7
-14	Dessert	/static/img/cooking_7.jpg	7
-15	Dessert	/static/img/cooking_1.jpg	8
-16	Breakfast	/static/img/cooking_6.jpg	8
-17	Dinner	/static/img/cooking_7.jpg	9
-18	Dessert	/static/img/cooking_4.jpg	9
-19	Dinner	/static/img/cooking_4.jpg	10
-20	Lunch	/static/img/cooking_3.jpg	10
+1	Breakfast	/static/img/cooking_6.jpg	1
+2	Dessert	/static/img/cooking_4.jpg	1
+3	Dinner	/static/img/cooking_6.jpg	2
+4	Dinner	/static/img/cooking_3.jpg	2
+5	Dessert	/static/img/cooking_1.jpg	3
+6	Dinner	/static/img/cooking_3.jpg	3
+7	Lunch	/static/img/cooking_3.jpg	4
+8	Breakfast	/static/img/cooking_3.jpg	4
+9	Lunch	/static/img/cooking_2.jpg	5
+10	Dinner	/static/img/cooking_7.jpg	5
+11	Dessert	/static/img/cooking_2.jpg	6
+12	Dessert	/static/img/cooking_2.jpg	6
+13	Dessert	/static/img/cooking_7.jpg	7
+14	Breakfast	/static/img/cooking_3.jpg	7
+15	Dessert	/static/img/cooking_2.jpg	8
+16	Dessert	/static/img/cooking_1.jpg	8
+17	Dinner	/static/img/cooking_4.jpg	9
+18	Breakfast	/static/img/cooking_2.jpg	9
+19	Dessert	/static/img/cooking_5.jpg	10
+20	Breakfast	/static/img/cooking_7.jpg	10
 \.
 
 
@@ -332,47 +333,47 @@ COPY public.cookbooks (cookbook_id, title, cover_img, user_id) FROM stdin;
 -- Data for Name: recipes; Type: TABLE DATA; Schema: public; Owner: vagrant
 --
 
-COPY public.recipes (recipe_id, title, ingredients, time_required, servings) FROM stdin;
-1	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-2	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-3	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-4	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-5	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-6	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-7	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-8	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-9	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-10	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-11	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-12	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-13	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-14	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-15	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-16	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-17	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-18	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-19	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-20	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-21	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-22	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-23	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-24	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-25	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-26	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-27	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-28	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-29	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-30	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-31	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-32	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-33	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-34	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4
-35	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1
-36	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
-37	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-38	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6
-39	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3
-40	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6
+COPY public.recipes (recipe_id, title, ingredients, time_required, servings, media) FROM stdin;
+1	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+2	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+3	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+4	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+5	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+6	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+7	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+8	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1	https://spoonacular.com/recipeImages/643426-556x370.jpg
+9	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+10	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+11	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+12	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+13	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+14	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1	https://spoonacular.com/recipeImages/643426-556x370.jpg
+15	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+16	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+17	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+18	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+19	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+20	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+21	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+22	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+23	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+24	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+25	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+26	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+27	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+28	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+29	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+30	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+31	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+32	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+33	Fresh Apple Cake With Caramel Sauce	2 c.s sugar, 1 c. vegetable oil, 3 eggs, 3 c.s sifted flour, 1 tsp. soda, 1 tsp. salt, 1 tsp. cinnamon, 2 tsp.s vanilla, 3 c.s peeled, chopped apples, 2 c.s coconut, 1 c. chopped dates or coconut, 1 c. chopped pecans, 1 c. packed brown sugar, 1/2 c. butter, 1/2 c. milk	45 mins	1	https://spoonacular.com/recipeImages/643426-556x370.jpg
+34	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+35	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+36	Healthy Black Forest Baked Oatmeal	1 cup rolled oats (not instant), ½ cup applesauce, ½ cup fat free milk (or dairy free milk, to make vegan), ¾ cup pitted cherries (fresh or frozen), ½ Tsp. vanilla extract, ¼ cup chocolate chips, 1 Tbsp. chia seeds, 1 Tbsp. cocoa powder	45 mins	3	https://spoonacular.com/recipeImages/646442-556x370.jpg
+37	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
+38	Philly Cheesesteak Grilled Wraps	2 steaks, BBQ'd and sliced as thin as possible, 1 tbsp vegetable oil, 2 onions, halved and sliced, 1 tsp Better than Bouillon Beef Base, 2 portobello mushrooms, stem and gills removed, 2 bell peppers, sliced, Mayonnaise, Hot Sauce, 4 - 10" tortillas	45 mins	4	https://spoonacular.com/recipeImages/655890-556x370.jpg
+39	Antipasto Squares	3 eggs, 1/2 Tsp ground black pepper, 1/4 pound thinly sliced ham, 3 Tbsp grated Parmesan cheese, 1/4 pound thinly sliced pepperoni sausage, 1/4 pound thinly sliced provolone cheese, 2 (10oz) cans refrigerated crescent dinner rolls, 1 (12oz) jar roasted red peppers, drained and sliced into strips, 1/4 pound thinly sliced Genoa salami, 1/4 pound thinly sliced swiss cheese	45 mins	6	https://spoonacular.com/recipeImages/715511-556x370.jpg
+40	Turkey Tomato Cheese Pizza	green bell pepper, chopped, parsley, pepper, whole wheat crust, Roma tomato, diced, shredded Mozzarella cheese, tomato sauce, ½-3/4 cup chopped Turkey breast (cooked), white onion, chopped	15 mins	6	https://spoonacular.com/recipeImages/715495-556x370.jpg
 \.
 
 
@@ -381,267 +382,284 @@ COPY public.recipes (recipe_id, title, ingredients, time_required, servings) FRO
 --
 
 COPY public.steps (step_id, recipe_id, step_number, body, media) FROM stdin;
-1	1	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-2	1	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-3	1	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-4	1	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-5	2	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-6	2	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-7	2	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-8	2	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-9	2	5	Pile on the steak and vegetables.	\N
-10	2	6	Roll up, making sure the ends are sealed.	\N
-11	2	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-12	2	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-13	2	9	Enjoy the happy faces around you :)	\N
-14	3	1	Preheat oven to 375	\N
-15	3	2	Combine all ingredients in a medium bowl.	\N
-16	3	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-17	3	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-18	3	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-19	4	1	Preheat oven to 375	\N
-20	4	2	Combine all ingredients in a medium bowl.	\N
-21	4	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-22	4	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-23	4	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-24	5	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-25	5	2	minutes, or until dough is fluffy and golden brown.	\N
-26	5	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-27	5	4	When on Social Media, the Pink	\N
-28	5	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-29	5	6	Email	\N
-30	5	7	Address	\N
-31	5	8	Subscribe	\N
-32	5	9	Powered by Convert	\N
-33	5	10	Kit	\N
-34	6	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-35	6	2	minutes, or until dough is fluffy and golden brown.	\N
-36	6	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-37	6	4	When on Social Media, the Pink	\N
-38	6	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-39	6	6	Email	\N
-40	6	7	Address	\N
-41	6	8	Subscribe	\N
-42	6	9	Powered by Convert	\N
-43	6	10	Kit	\N
-44	7	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-45	7	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-46	7	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-47	7	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-48	8	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-49	8	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-50	8	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-51	8	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-52	8	5	Pile on the steak and vegetables.	\N
-53	8	6	Roll up, making sure the ends are sealed.	\N
-54	8	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-55	8	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-56	8	9	Enjoy the happy faces around you :)	\N
-57	9	1	Preheat oven to 375	\N
-58	9	2	Combine all ingredients in a medium bowl.	\N
-59	9	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-60	9	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-61	9	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-62	10	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-63	10	2	minutes, or until dough is fluffy and golden brown.	\N
-64	10	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-65	10	4	When on Social Media, the Pink	\N
-66	10	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-67	10	6	Email	\N
-68	10	7	Address	\N
-69	10	8	Subscribe	\N
-70	10	9	Powered by Convert	\N
-71	10	10	Kit	\N
-72	11	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-73	11	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-74	11	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-75	11	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-76	11	5	Pile on the steak and vegetables.	\N
-77	11	6	Roll up, making sure the ends are sealed.	\N
-78	11	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-79	11	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-80	11	9	Enjoy the happy faces around you :)	\N
-81	12	1	Preheat oven to 375	\N
-82	12	2	Combine all ingredients in a medium bowl.	\N
-83	12	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-84	12	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-85	12	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-86	13	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-87	13	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-88	13	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-89	13	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-90	14	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-91	14	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-92	14	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-93	14	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-94	15	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-95	15	2	minutes, or until dough is fluffy and golden brown.	\N
-96	15	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-97	15	4	When on Social Media, the Pink	\N
-98	15	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-99	15	6	Email	\N
-100	15	7	Address	\N
-101	15	8	Subscribe	\N
-102	15	9	Powered by Convert	\N
-103	15	10	Kit	\N
-104	16	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-105	16	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-106	16	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-107	16	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-108	17	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-109	17	2	minutes, or until dough is fluffy and golden brown.	\N
-110	17	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-111	17	4	When on Social Media, the Pink	\N
-112	17	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-113	17	6	Email	\N
-114	17	7	Address	\N
-115	17	8	Subscribe	\N
-116	17	9	Powered by Convert	\N
-117	17	10	Kit	\N
-118	18	1	Preheat oven to 375	\N
-119	18	2	Combine all ingredients in a medium bowl.	\N
-120	18	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-121	18	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-122	18	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-123	19	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-124	19	2	minutes, or until dough is fluffy and golden brown.	\N
-181	28	6	Roll up, making sure the ends are sealed.	\N
-237	36	9	Powered by Convert	\N
-125	19	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-126	19	4	When on Social Media, the Pink	\N
-127	19	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-128	19	6	Email	\N
-129	19	7	Address	\N
-130	19	8	Subscribe	\N
-131	19	9	Powered by Convert	\N
-132	19	10	Kit	\N
-133	20	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-134	20	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-135	20	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-136	20	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-137	21	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-138	21	2	minutes, or until dough is fluffy and golden brown.	\N
-139	21	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-140	21	4	When on Social Media, the Pink	\N
-141	21	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-142	21	6	Email	\N
-143	21	7	Address	\N
-144	21	8	Subscribe	\N
-145	21	9	Powered by Convert	\N
-146	21	10	Kit	\N
-147	22	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-148	22	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-149	22	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-150	22	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-151	23	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-152	23	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-153	23	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-154	23	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-155	24	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-156	24	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-157	24	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-158	24	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-159	25	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-160	25	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-161	25	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-162	25	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-163	25	5	Pile on the steak and vegetables.	\N
-164	25	6	Roll up, making sure the ends are sealed.	\N
-165	25	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-166	25	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-167	25	9	Enjoy the happy faces around you :)	\N
-168	26	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-169	26	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-170	26	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-171	26	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-172	27	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-173	27	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-174	27	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-175	27	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-176	28	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-177	28	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-178	28	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-179	28	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-180	28	5	Pile on the steak and vegetables.	\N
-182	28	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-183	28	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-184	28	9	Enjoy the happy faces around you :)	\N
-185	29	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-186	29	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-187	29	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-188	29	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-189	30	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-190	30	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-191	30	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-192	30	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-193	30	5	Pile on the steak and vegetables.	\N
-194	30	6	Roll up, making sure the ends are sealed.	\N
-195	30	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-196	30	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-197	30	9	Enjoy the happy faces around you :)	\N
-198	31	1	Preheat oven to 375	\N
-199	31	2	Combine all ingredients in a medium bowl.	\N
-200	31	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-201	31	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-202	31	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-203	32	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-204	32	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-205	32	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-206	32	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-207	33	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-208	33	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-209	33	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-210	33	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-211	33	5	Pile on the steak and vegetables.	\N
-212	33	6	Roll up, making sure the ends are sealed.	\N
-213	33	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-214	33	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-215	33	9	Enjoy the happy faces around you :)	\N
-216	34	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
-217	34	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
-218	34	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
-219	34	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
-220	34	5	Pile on the steak and vegetables.	\N
-221	34	6	Roll up, making sure the ends are sealed.	\N
-222	34	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
-223	34	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
-224	34	9	Enjoy the happy faces around you :)	\N
-225	35	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
-226	35	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
-227	35	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
-228	35	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
-229	36	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-230	36	2	minutes, or until dough is fluffy and golden brown.	\N
-231	36	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-232	36	4	When on Social Media, the Pink	\N
-233	36	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-234	36	6	Email	\N
-235	36	7	Address	\N
-236	36	8	Subscribe	\N
-238	36	10	Kit	\N
-239	37	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-240	37	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-241	37	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-242	37	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-243	38	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
-244	38	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
-245	38	3	Add another layer of cheese, and then sprinkle with pepper.	\N
-246	38	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
-247	39	1	Preheat oven to 375	\N
-248	39	2	Combine all ingredients in a medium bowl.	\N
-249	39	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
-250	39	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
-251	39	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
-252	40	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
-253	40	2	minutes, or until dough is fluffy and golden brown.	\N
-254	40	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
-255	40	4	When on Social Media, the Pink	\N
-256	40	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
-257	40	6	Email	\N
-258	40	7	Address	\N
-259	40	8	Subscribe	\N
-260	40	9	Powered by Convert	\N
-261	40	10	Kit	\N
+1	1	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+2	1	2	minutes, or until dough is fluffy and golden brown.	\N
+3	1	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+4	1	4	When on Social Media, the Pink	\N
+5	1	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+6	1	6	Email	\N
+7	1	7	Address	\N
+8	1	8	Subscribe	\N
+9	1	9	Powered by Convert	\N
+10	1	10	Kit	\N
+11	2	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+12	2	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+13	2	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+14	2	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+15	2	5	Pile on the steak and vegetables.	\N
+16	2	6	Roll up, making sure the ends are sealed.	\N
+17	2	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+18	2	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+19	2	9	Enjoy the happy faces around you :)	\N
+20	3	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+21	3	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+22	3	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+23	3	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+24	3	5	Pile on the steak and vegetables.	\N
+25	3	6	Roll up, making sure the ends are sealed.	\N
+26	3	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+27	3	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+28	3	9	Enjoy the happy faces around you :)	\N
+29	4	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+30	4	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+31	4	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+32	4	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+33	4	5	Pile on the steak and vegetables.	\N
+34	4	6	Roll up, making sure the ends are sealed.	\N
+35	4	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+36	4	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+37	4	9	Enjoy the happy faces around you :)	\N
+38	5	1	Preheat oven to 375	\N
+39	5	2	Combine all ingredients in a medium bowl.	\N
+40	5	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+41	5	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+42	5	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+43	6	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+44	6	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+45	6	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+46	6	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+47	6	5	Pile on the steak and vegetables.	\N
+48	6	6	Roll up, making sure the ends are sealed.	\N
+49	6	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+50	6	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+51	6	9	Enjoy the happy faces around you :)	\N
+52	7	1	Preheat oven to 375	\N
+53	7	2	Combine all ingredients in a medium bowl.	\N
+54	7	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+55	7	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+56	7	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+57	8	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
+58	8	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
+59	8	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
+124	17	6	Roll up, making sure the ends are sealed.	\N
+60	8	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
+61	9	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+62	9	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+63	9	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+64	9	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+65	10	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+66	10	2	minutes, or until dough is fluffy and golden brown.	\N
+67	10	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+68	10	4	When on Social Media, the Pink	\N
+69	10	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+70	10	6	Email	\N
+71	10	7	Address	\N
+72	10	8	Subscribe	\N
+73	10	9	Powered by Convert	\N
+74	10	10	Kit	\N
+75	11	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+76	11	2	minutes, or until dough is fluffy and golden brown.	\N
+77	11	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+78	11	4	When on Social Media, the Pink	\N
+79	11	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+80	11	6	Email	\N
+81	11	7	Address	\N
+82	11	8	Subscribe	\N
+83	11	9	Powered by Convert	\N
+84	11	10	Kit	\N
+85	12	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+86	12	2	minutes, or until dough is fluffy and golden brown.	\N
+87	12	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+88	12	4	When on Social Media, the Pink	\N
+89	12	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+90	12	6	Email	\N
+91	12	7	Address	\N
+92	12	8	Subscribe	\N
+93	12	9	Powered by Convert	\N
+94	12	10	Kit	\N
+95	13	1	Preheat oven to 375	\N
+96	13	2	Combine all ingredients in a medium bowl.	\N
+97	13	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+98	13	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+99	13	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+100	14	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
+101	14	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
+102	14	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
+103	14	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
+104	15	1	Preheat oven to 375	\N
+105	15	2	Combine all ingredients in a medium bowl.	\N
+106	15	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+107	15	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+108	15	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+109	16	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+110	16	2	minutes, or until dough is fluffy and golden brown.	\N
+111	16	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+112	16	4	When on Social Media, the Pink	\N
+113	16	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+114	16	6	Email	\N
+115	16	7	Address	\N
+116	16	8	Subscribe	\N
+117	16	9	Powered by Convert	\N
+118	16	10	Kit	\N
+119	17	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+120	17	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+121	17	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+122	17	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+123	17	5	Pile on the steak and vegetables.	\N
+125	17	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+126	17	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+127	17	9	Enjoy the happy faces around you :)	\N
+128	18	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+129	18	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+130	18	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+131	18	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+132	18	5	Pile on the steak and vegetables.	\N
+133	18	6	Roll up, making sure the ends are sealed.	\N
+134	18	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+135	18	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+136	18	9	Enjoy the happy faces around you :)	\N
+137	19	1	Preheat oven to 375	\N
+138	19	2	Combine all ingredients in a medium bowl.	\N
+139	19	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+140	19	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+141	19	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+142	20	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+143	20	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+144	20	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+145	20	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+146	21	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+147	21	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+148	21	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+149	21	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+150	22	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+151	22	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+152	22	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+153	22	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+154	23	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+155	23	2	minutes, or until dough is fluffy and golden brown.	\N
+156	23	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+157	23	4	When on Social Media, the Pink	\N
+158	23	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+159	23	6	Email	\N
+160	23	7	Address	\N
+161	23	8	Subscribe	\N
+162	23	9	Powered by Convert	\N
+163	23	10	Kit	\N
+164	24	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+165	24	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+166	24	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+167	24	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+168	24	5	Pile on the steak and vegetables.	\N
+169	24	6	Roll up, making sure the ends are sealed.	\N
+170	24	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+171	24	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+172	24	9	Enjoy the happy faces around you :)	\N
+173	25	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+174	25	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+175	25	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+176	25	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+177	25	5	Pile on the steak and vegetables.	\N
+178	25	6	Roll up, making sure the ends are sealed.	\N
+179	25	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+180	25	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+181	25	9	Enjoy the happy faces around you :)	\N
+182	26	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+183	26	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+184	26	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+185	26	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+186	26	5	Pile on the steak and vegetables.	\N
+187	26	6	Roll up, making sure the ends are sealed.	\N
+188	26	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+189	26	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+190	26	9	Enjoy the happy faces around you :)	\N
+191	27	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+192	27	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+193	27	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+194	27	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+195	28	1	Preheat oven to 375	\N
+196	28	2	Combine all ingredients in a medium bowl.	\N
+197	28	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+198	28	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+199	28	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+200	29	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+201	29	2	minutes, or until dough is fluffy and golden brown.	\N
+202	29	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+203	29	4	When on Social Media, the Pink	\N
+204	29	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+205	29	6	Email	\N
+206	29	7	Address	\N
+207	29	8	Subscribe	\N
+208	29	9	Powered by Convert	\N
+209	29	10	Kit	\N
+210	30	1	Preheat oven to 375	\N
+211	30	2	Combine all ingredients in a medium bowl.	\N
+212	30	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+213	30	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+214	30	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+215	31	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+216	31	2	minutes, or until dough is fluffy and golden brown.	\N
+217	31	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+218	31	4	When on Social Media, the Pink	\N
+219	31	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+220	31	6	Email	\N
+221	31	7	Address	\N
+222	31	8	Subscribe	\N
+223	31	9	Powered by Convert	\N
+224	31	10	Kit	\N
+225	32	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+226	32	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+227	32	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+228	32	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+229	33	1	Mix together sugar and oil; add eggs; beat well. blend in flour, soda and salt.	\N
+230	33	2	Add cinnamon and vanilla. Stir in apples, coconut, dates and pecans. Batter will be thick. Spoon into a 9" or 10" tube pan which has been greased and floured.	\N
+231	33	3	Bake at 325 degrees for 1 1/2 hours, or until toothpick inserted comes out clean.	\N
+232	33	4	Remove from oven and immediately pour caramel sauce over and allow to soak in. Cool cake completely before removing from pan. For caramel sauce, heat ingredients together. Boil for 2 minutes.	\N
+233	34	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+234	34	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+235	34	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+236	34	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+237	35	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+238	35	2	minutes, or until dough is fluffy and golden brown.	\N
+239	35	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+240	35	4	When on Social Media, the Pink	\N
+241	35	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+242	35	6	Email	\N
+243	35	7	Address	\N
+244	35	8	Subscribe	\N
+245	35	9	Powered by Convert	\N
+246	35	10	Kit	\N
+247	36	1	Preheat oven to 375	\N
+248	36	2	Combine all ingredients in a medium bowl.	\N
+249	36	3	Spray a muffin tin with cooking oil. Fill the tin to the top with oats. It should make about six  eight oatmeal cakes.	\N
+250	36	4	Bake uncovered for 20 minutes. For a light crust, broil for an additional 3-5 minutes until lightly browned.	\N
+251	36	5	Serve on its own or with fresh fruit, yogurt, or milk.	\N
+252	37	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+253	37	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+254	37	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+255	37	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
+256	38	1	In frying pan over medium-low heat, add onions and cook on low until caramelized (when done properly, this takes about 30 min).	\N
+257	38	2	Add in the Better than Bouillon Beef Base and a tbsp of water to make a faint gravy.	\N
+258	38	3	Add in the mushrooms and bell peppers and cook until softened, about 5 minutes.	\N
+259	38	4	On tortilla, spread a thin layer of mayonnaise and top with a few squirts of hot sauce.	\N
+260	38	5	Pile on the steak and vegetables.	\N
+261	38	6	Roll up, making sure the ends are sealed.	\N
+262	38	7	On griddle or in large frying pan sprayed with cooking spray, over medium heat, add the wraps, seam side down, and put something heavy on top (like a smaller frying pan weighted down with something heatproof) and grill until toasted. Flip and repeat. This would work well in an electric grill (like the George Foreman or a panini press)	\N
+263	38	8	Once finished, pull off and let sit for a minute before slicing in half.	\N
+264	38	9	Enjoy the happy faces around you :)	\N
+265	39	1	Bake for 25 minutes in the preheated oven, then remove foil and bake for an additional 10-20 (I bake the full 2	\N
+266	39	2	minutes, or until dough is fluffy and golden brown.	\N
+267	39	3	Let stand for 5 minutes, then cut into squares, and serve warm or at room temperature.You must try this one out and let me know what you think!JOIN 500,000 SUBSCRIBERS!Join over 500,000 others who follow Pink	\N
+268	39	4	When on Social Media, the Pink	\N
+269	39	5	When blog, and email. Sign up to receive exclusive bonuses like this FREE Simple Fit Dinners Ebook.Don't wait! You won't want to miss a thing.Success! Now check your email to confirm your subscription and download your FREE ebook.There was an error submitting your subscription. Please try again.First Name	\N
+270	39	6	Email	\N
+271	39	7	Address	\N
+272	39	8	Subscribe	\N
+273	39	9	Powered by Convert	\N
+274	39	10	Kit	\N
+275	40	1	Heat up your grill to 450 degrees.Start off with your whole wheat crust and spread the tomato sauce evenly over the top.	\N
+276	40	2	Add a little cheese, bell pepper, onion, turkey and create a layer.Top with another layer of cheese, turkey, tomato, bell pepper, onion.	\N
+277	40	3	Add another layer of cheese, and then sprinkle with pepper.	\N
+278	40	4	Place the pizza on a ceramic grill plate and place into the grill.Grill for 6-10 minutes, or until cooked as desired.Slice, and serve immediately.	\N
 \.
 
 
@@ -650,16 +668,16 @@ COPY public.steps (step_id, recipe_id, step_number, body, media) FROM stdin;
 --
 
 COPY public.users (user_id, fname, lname, email, password, profile_picture) FROM stdin;
-1	Brittany	Bowers	BBowers@email.com	test	/static/img/chef_hat.png
-2	Sara	Cooper	SCooper@email.com	test	/static/img/chef_hat.png
-3	Jeremy	Sanders	JSanders@email.com	test	/static/img/chef_hat.png
-4	Lisa	Ramirez	LRamirez@email.com	test	/static/img/chef_hat.png
-5	Janet	Barker	JBarker@email.com	test	/static/img/chef_hat.png
-6	Jamie	Sandoval	JSandoval@email.com	test	/static/img/chef_hat.png
-7	Tim	Coleman	TColeman@email.com	test	/static/img/chef_hat.png
-8	Kendra	Hull	KHull@email.com	test	/static/img/chef_hat.png
-9	Michelle	Estrada	MEstrada@email.com	test	/static/img/chef_hat.png
-10	Tammy	Wang	TWang@email.com	test	/static/img/chef_hat.png
+1	Jordan	Cross	JCross@email.com	test	/static/img/chef_hat.png
+2	Elizabeth	Thompson	EThompson@email.com	test	/static/img/chef_hat.png
+3	Jeffrey	Smith	JSmith@email.com	test	/static/img/chef_hat.png
+4	Matthew	Allen	MAllen@email.com	test	/static/img/chef_hat.png
+5	Jeanne	Moore	JMoore@email.com	test	/static/img/chef_hat.png
+6	Travis	Abbott	TAbbott@email.com	test	/static/img/chef_hat.png
+7	Joseph	Flores	JFlores@email.com	test	/static/img/chef_hat.png
+8	Evan	Colon	EColon@email.com	test	/static/img/chef_hat.png
+9	Austin	Maldonado	AMaldonado@email.com	test	/static/img/chef_hat.png
+10	Sarah	Bailey	SBailey@email.com	test	/static/img/chef_hat.png
 \.
 
 
@@ -688,7 +706,7 @@ SELECT pg_catalog.setval('public.recipes_recipe_id_seq', 40, true);
 -- Name: steps_step_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
-SELECT pg_catalog.setval('public.steps_step_id_seq', 261, true);
+SELECT pg_catalog.setval('public.steps_step_id_seq', 278, true);
 
 
 --

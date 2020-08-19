@@ -40,6 +40,7 @@ function RecipeDetails (props) {
 
     return <div>
         <p> Title: {props.recipeDetails.title}</p>
+        <img src={props.recipeDetails.media} />
         <p> ingredients: {props.recipeDetails.ingredients}</p>
         <p> 
             time required: {props.recipeDetails.time_required}
