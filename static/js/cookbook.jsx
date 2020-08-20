@@ -92,6 +92,10 @@ function RecipeList (props) {
     return <ul>{cookbookRecipes}</ul>
 }
 
+function StepBox () {
+    return <input type='area'></input>
+}
+
 function RecipieForm () {
      //track what user is entering in fields
      const [title, setTitle] = React.useState('');
@@ -126,7 +130,7 @@ function RecipieForm () {
                     id='servings'
                     onChange={(evt) => setServings(evt.target.value)}
                     value={servings}></input>
-            <label>Ingredients</label>
+            <label>Ingredients (seperate each with comma)</label>
             <input type='area'
                     id='ingredients'
                     onChange={(evt) => setIngredients(evt.target.value)}
