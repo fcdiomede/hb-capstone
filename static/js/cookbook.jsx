@@ -92,19 +92,53 @@ function RecipeList (props) {
     return <ul>{cookbookRecipes}</ul>
 }
 
-function EditRecipeButton () {
-    return <button>Edit Recipe</button>
+function RecipieForm () {
+    return (
+        <form>
+            <label>Title</label>
+            <input type='text'></input>
+            <label>Cover Photo</label>
+            <input type='file' 
+               id='coverImg'
+               accept="image/png, image/jpg"
+               encType="multipart/form-data"></input>
+            <label>Ready in Mins:</label>
+            <input type='text'></input>
+            <label>Servings:</label>
+            <input type='text'></input>
+            <label>Ingredients</label>
+            <input type='area'></input>
+            <label>Steps</label>
+            <input type='area'></input>
+        </form>
+    )
 }
 
-function NewRecipeButton() {
-    return <button>Add New Recipe</button>
+
+function ChangeRecipeButton(props) {
+
+    const showForm = () => {
+        props.setShowRecipeDetails(false)
+    }
+
+    return <button onClick={showForm}>{ props.caption }</button>
+}
+
+function BackButton(props) {
+
+    const hideForm = () => {
+        props.setShowRecipeDetails(true)
+    }
+
+    return <button onClick={hideForm}>Back to Recipe Details</button>
+
 }
 
 function Cookbook() {
 
     const [recipes, setRecipes] = React.useState([])
     const [recipeDetails, setRecipeDetails] = React.useState('')
-
+    const [showRecipeDetails, setShowRecipeDetails] = React.useState(true)
 
     React.useEffect(() => {
         fetch('/api/cookbook-details')
@@ -116,11 +150,21 @@ function Cookbook() {
     return (
         <React.Fragment>
             <h2>This is a cookbook!</h2>
-            <CreateNewCookbook />
-            <EditRecipeButton />
-            <NewRecipeButton />
             <RecipeList recipes={recipes} setRecipeDetails={setRecipeDetails}/>
-            <RecipeDetails  recipeDetails={recipeDetails}/>
+            { showRecipeDetails ?  <div>
+                                        <CreateNewCookbook />
+                                        <ChangeRecipeButton caption='Edit Recipe'
+                                                            setShowRecipeDetails={setShowRecipeDetails}/>
+                                        <ChangeRecipeButton caption='New Recipe' 
+                                                            setShowRecipeDetails={setShowRecipeDetails}/>
+                                        <RecipeDetails  recipeDetails={recipeDetails}/> 
+                                    </div>
+                                    :
+                                    <div>
+                                        <BackButton setShowRecipeDetails={setShowRecipeDetails}/>
+                                        <RecipieForm />
+                                    </div>}
+           
        </React.Fragment>
     )
 }
