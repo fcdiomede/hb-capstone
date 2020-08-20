@@ -73,7 +73,6 @@ function Login() {
 
     //track button pushes
     const [showCreateAccount, setShowCreateAccount] = React.useState(false);
-    const[visible, setVisible] = React.useState('visible')
 
     let history = useHistory();
 
@@ -103,7 +102,6 @@ function Login() {
     const createAccount = (event) => {
         event.preventDefault();
         setShowCreateAccount(true)
-        setVisible('hidden')
     }
 
     //login form
@@ -121,17 +119,18 @@ function Login() {
                 onChange={(evt) => setPassword(evt.currentTarget.value)}
                 value={password}>
             </input>
-            <button onClick={authenticateUser} style={{visibility: visible}}>
-                Log In
-            </button>
-            <button onClick={createAccount} style={{visibility: visible}}>
-                Create Account
-            </button>
             { showCreateAccount ? <CreateAccount 
-                                    setVisible={setVisible}
                                     setShowCreateAccount={setShowCreateAccount}
                                     email={email}
-                                    password={password}/> : null }
+                                    password={password}/> : 
+                                    <div>
+                                         <button onClick={authenticateUser}>
+                                            Log In
+                                        </button>
+                                        <button onClick={createAccount}>
+                                            Create Account
+                                        </button>
+                                    </div> }
         </form>
     )
 }
