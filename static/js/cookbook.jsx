@@ -96,7 +96,7 @@ function StepBox () {
     return <input type='area'></input>
 }
 
-function RecipieForm () {
+function RecipieForm (props) {
      //track what user is entering in fields
      const [title, setTitle] = React.useState('');
      const [photo, setPhoto] = React.useState('');
@@ -149,6 +149,12 @@ function ChangeRecipeButton(props) {
 
     const showForm = () => {
         props.setShowRecipeDetails(false)
+
+        if (props.caption === 'Edit Recipe') {
+            props.setButtonClicked('Edit')
+        } else {
+            props.setButtonClicked('New')
+        }
     }
 
     return <button onClick={showForm}>{ props.caption }</button>
@@ -169,6 +175,7 @@ function Cookbook() {
     const [recipes, setRecipes] = React.useState([])
     const [recipeDetails, setRecipeDetails] = React.useState('')
     const [showRecipeDetails, setShowRecipeDetails] = React.useState(true)
+    const [buttonClicked, setButtonClicked] = React.useState('')
 
     React.useEffect(() => {
         fetch('/api/cookbook-details')
@@ -184,15 +191,17 @@ function Cookbook() {
             { showRecipeDetails ?  <div>
                                         <CreateNewCookbook />
                                         <ChangeRecipeButton caption='Edit Recipe'
-                                                            setShowRecipeDetails={setShowRecipeDetails}/>
+                                                            setShowRecipeDetails={setShowRecipeDetails}
+                                                            setButtonClicked={setButtonClicked}/>
                                         <ChangeRecipeButton caption='New Recipe' 
-                                                            setShowRecipeDetails={setShowRecipeDetails}/>
+                                                            setShowRecipeDetails={setShowRecipeDetails}
+                                                            setButtonClicked={setButtonClicked}/>
                                         <RecipeDetails  recipeDetails={recipeDetails}/> 
                                     </div>
                                     :
                                     <div>
                                         <BackButton setShowRecipeDetails={setShowRecipeDetails}/>
-                                        <RecipieForm />
+                                        <RecipieForm buttonClicked={buttonClicked}/>
                                     </div>}
            
        </React.Fragment>
