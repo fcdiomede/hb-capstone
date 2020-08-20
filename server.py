@@ -26,14 +26,13 @@ def get_user_cookbooks():
     return jsonify(cookbook_list)
 
 
-@app.route('/api/set-data', methods=['POST'])
+@app.route('/api/set-cookbook', methods=['POST'])
 def set_cookbook():
     data = request.get_json()
-    data_to_set = data["item"]
-    data_id = data["data_id"]
-    session[data_to_set] = data_id
+    cookbook_id = data["cookbookId"]
+    session["cookbook_id"] = cookbook_id
     print(session)
-    return jsonify({'data_id': data_id})
+    return jsonify({"cookbook_id":cookbook_id})
 
 
 
@@ -46,14 +45,6 @@ def get_cookbook_details():
 
     for recipe in recipes:
         data[recipe.recipe_id] = recipe.title
-
-    # for recipe in recipes:
-    #     data[recipe.recipe_id] = {
-    #                 "title": recipe.title,
-    #                 "ingredients": recipe.ingredients,
-    #                 "time_required": recipe.time_required,
-    #                 "servings": recipe.servings,
-    #                 "media": recipe.media}
     
     return jsonify(data)
 
