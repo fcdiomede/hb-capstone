@@ -93,23 +93,49 @@ function RecipeList (props) {
 }
 
 function RecipieForm () {
+     //track what user is entering in fields
+     const [title, setTitle] = React.useState('');
+     const [photo, setPhoto] = React.useState('');
+     const [mins, setMins] = React.useState('');
+     const [servings, setServings] = React.useState('');
+     const [ingredients, setIngredients] = React.useState('');
+     const [steps, setSteps] = React.useState('');
+
+
     return (
         <form>
             <label>Title</label>
-            <input type='text'></input>
+            <input type='text'
+                    id='title'
+                    onChange={(evt) => setTitle(evt.target.value)}
+                    value={title}></input>
             <label>Cover Photo</label>
             <input type='file' 
                id='coverImg'
                accept="image/png, image/jpg"
-               encType="multipart/form-data"></input>
+               encType="multipart/form-data"
+               onChange={(evt) => setPhoto(evt.target.value)}
+                value={photo}></input>
             <label>Ready in Mins:</label>
-            <input type='text'></input>
+            <input type='text'
+                    id='readyMins'
+                    onChange={(evt) => setMins(evt.target.value)}
+                    value={mins}></input>
             <label>Servings:</label>
-            <input type='text'></input>
+            <input type='text'
+                    id='servings'
+                    onChange={(evt) => setServings(evt.target.value)}
+                    value={servings}></input>
             <label>Ingredients</label>
-            <input type='area'></input>
+            <input type='area'
+                    id='ingredients'
+                    onChange={(evt) => setIngredients(evt.target.value)}
+                    value={ingredients}></input>
             <label>Steps</label>
-            <input type='area'></input>
+            <input type='area'
+                    id='steps'
+                    onChange={(evt) => setSteps(evt.target.value)}
+                    value={steps}></input>
         </form>
     )
 }
