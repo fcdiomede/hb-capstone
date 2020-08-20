@@ -42,30 +42,41 @@ def get_cookbook_details():
 
     cookbook_id = session["cookbook_id"]
     recipes = crud.get_cookbook_recipes(cookbook_id)
-    data = []
+    data = {}
 
     for recipe in recipes:
-        data.append({"key": recipe.recipe_id,
-                    "title": recipe.title,
-                    "ingredients": recipe.ingredients,
-                    "time_required": recipe.time_required,
-                    "servings": recipe.servings,
-                    "media": recipe.media})
+        data[recipe.recipe_id] = recipe.title
+
+    # for recipe in recipes:
+    #     data[recipe.recipe_id] = {
+    #                 "title": recipe.title,
+    #                 "ingredients": recipe.ingredients,
+    #                 "time_required": recipe.time_required,
+    #                 "servings": recipe.servings,
+    #                 "media": recipe.media}
     
     return jsonify(data)
 
 
-@app.route('/api/recipe-steps')
-def get_recipe_steps():
-    recipe_id = session["recipe_id"]
+@app.route('/api/recipe-details/<recipe_id>', methods=['POST'])
+def get_recipe_steps(recipe_id):
 
+    recipe = crud.get_recipe_by_id(recipe_id)
+
+    data = {
+            "title": recipe.title,
+            "ingredients": recipe.ingredients,
+            "time_required": recipe.time_required,
+            "servings": recipe.servings,
+            "media": recipe.media,
+            "steps": []}
+    
     steps = crud.get_steps_for_recipe(recipe_id)
-    data = []
 
     for step in steps:
-        data.append({"key": step.step_id,
-                    "num":step.step_number, 
-                    "body":step.body})
+        data["steps"].append({"key": step.step_id,
+                    "num": step.step_number, 
+                    "body": step.body})
     
     
     return jsonify(data)

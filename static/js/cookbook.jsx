@@ -28,26 +28,19 @@ function NewCookbookForm() {
 
 function RecipeStep (props) {
     return (
-        <div>
-            <p> {props.num} {props.body} </p>
-        </div>
+            <li>{props.body} </li>
     )
 }
 
 function RecipeDetails (props) {
 
-    const currentRecipeId = props.currentRecipe.data_id
-
-    const [steps, setSteps] = React.useState('')
-
-    React.useEffect(() => {
-        fetch('/api/recipe-steps')
-        .then((res) => res.json())
-        .then((data) => setSteps(data))
-      }, [currentRecipeId]);
-
+    if (!props.recipeDetails) {
+        return <div></div>
+    }
+    console.log(props.recipeDetails)
+    
       const recipeSteps = []
-      for (const step of steps) {
+      for (const step of props.recipeDetails.steps) {
         recipeSteps.push(
           <RecipeStep
             key={step.key}
@@ -57,36 +50,26 @@ function RecipeDetails (props) {
         );
       }
 
-    for (const recipe of props.allRecipes) {
-        if (recipe.key === currentRecipeId) {
-            props.setRecipeDetails(recipe)
-        }
-    }
-
     return <div>
-        <p> Title: {props.recipeDetails.title}</p>
+        <div> Title: {props.recipeDetails.title}</div>
         <img src={props.recipeDetails.media} />
-        <p> ingredients: {props.recipeDetails.ingredients}</p>
-        <p> 
+        <div> ingredients: {props.recipeDetails.ingredients}</div>
+        <div> 
             time required: {props.recipeDetails.time_required}
             servings: {props.recipeDetails.servings}
-        </p>
-        <p>{recipeSteps}</p>
+        </div>
+        <ol>{recipeSteps}</ol>
     </div>
 }
 
 function RecipeListItem(props) {
 
-    let data = {'data_id': props.recipe_id,
-            'item': 'recipe_id'}
-
     const goToRecipe = () => {
-        fetch('/api/set-data', {method: 'POST', 
-        body: JSON.stringify(data), 
+        fetch(`/api/recipe-details/${props.recipeId}`, {method: 'POST', 
         headers: {'Accept': 'application/json',
         'Content-Type': 'application/json'}})
         .then((res) => res.json())
-        .then((data) => props.setCurrentRecipe(data))
+        .then((data) => props.setRecipeDetails(data));
     }
 
     return <li onClick={goToRecipe}> {props.title} </li>
@@ -95,13 +78,13 @@ function RecipeListItem(props) {
 function RecipeList (props) {
 
     const cookbookRecipes = []
-    for (const recipe of props.recipes) {
+    for (const recipeId in props.recipes) {
         cookbookRecipes.push(
             <RecipeListItem
-                key={recipe.key}
-                recipe_id={recipe.key}
-                title={recipe.title}
-                setCurrentRecipe={props.setCurrentRecipe}
+                key={recipeId}
+                recipeId={recipeId}
+                title={props.recipes[recipeId]}
+                setRecipeDetails={props.setRecipeDetails}
             />
         )
     }
@@ -109,12 +92,17 @@ function RecipeList (props) {
     return <ul>{cookbookRecipes}</ul>
 }
 
+function EditRecipeButton () {
+    return <button>Edit Recipe</button>
+}
 
+function NewRecipeButton() {
+    return <button>Add New Recipe</button>
+}
 
 function Cookbook() {
 
     const [recipes, setRecipes] = React.useState([])
-    const [currentRecipe, setCurrentRecipe] = React.useState('')
     const [recipeDetails, setRecipeDetails] = React.useState('')
 
 
@@ -129,9 +117,10 @@ function Cookbook() {
         <React.Fragment>
             <h2>This is a cookbook!</h2>
             <CreateNewCookbook />
-            <RecipeList recipes={recipes} setCurrentRecipe={setCurrentRecipe}/>
-            <RecipeDetails currentRecipe={currentRecipe} allRecipes={recipes}
-                            recipeDetails={recipeDetails} setRecipeDetails={setRecipeDetails}/>
+            <EditRecipeButton />
+            <NewRecipeButton />
+            <RecipeList recipes={recipes} setRecipeDetails={setRecipeDetails}/>
+            <RecipeDetails  recipeDetails={recipeDetails}/>
        </React.Fragment>
     )
 }
