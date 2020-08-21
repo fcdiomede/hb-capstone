@@ -100,8 +100,8 @@ function RecipieForm (props) {
      const [servings, setServings] = React.useState('');
      const [ingredients, setIngredients] = React.useState('');
      const [steps, setSteps] = React.useState(['']);
-    
-    console.log(props.recipeDetails)
+
+     console.log(steps)
 
     //  const instructions = []
 
@@ -126,6 +126,12 @@ function RecipieForm (props) {
         evt.preventDefault();
         setSteps([...steps, '']);
     };
+
+    const handleStepChange = (evt) => {
+        const updatedSteps = [...steps];
+        updatedSteps[evt.target.dataset.idx] = evt.target.value;
+        setSteps(updatedSteps);
+      };
 
     return (
         <form>
@@ -165,7 +171,8 @@ function RecipieForm (props) {
                             <input type='area'
                                     value={stepBody}
                                     id={`step-${index}`}
-                                    data-idx={index}></input>
+                                    data-idx={index}
+                                    onChange={handleStepChange}></input>
                         </li>
                     )
                 }) 
