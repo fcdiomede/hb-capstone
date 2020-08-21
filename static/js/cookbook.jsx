@@ -136,6 +136,28 @@ function RecipieForm (props) {
         setSteps(updatedSteps);
     };
 
+
+    const save = (evt) => {
+        evt.preventDefault()
+
+        const data = {
+                'title': title,
+                'readyInMins': mins,
+                'servings': servings,
+                'ingredients': ingredients,
+                'steps': steps
+                }
+
+        fetch('/api/save', {method: 'POST', 
+        body: JSON.stringify(data),
+        headers: {'Accept': 'application/json',
+        'Content-Type': 'application/json'}})
+        .then((res) => res.json())
+        .then((data) => {
+            props.setRecipeDetails(data)
+        })
+    }
+
     return (
         <form>
             <label>Title</label>
@@ -186,6 +208,7 @@ function RecipieForm (props) {
             }
             </ol>
             <button onClick={addStep}>Add Step</button>
+            <input type="submit" onClick={save}></input>
         </form>
     )
 }
@@ -242,6 +265,7 @@ function Cookbook() {
                                     <div>
                                         <BackButton setShowRecipeDetails={setShowRecipeDetails}/>
                                         <RecipieForm recipeDetails={recipeDetails}
+                                                    setRecipeDetails={setRecipeDetails}
                                                         buttonClicked={showRecipeDetails[1]}/>
                                     </div>}
            

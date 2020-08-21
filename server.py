@@ -114,6 +114,45 @@ def create_user():
     return jsonify({'status':status})
     
 
+@app.route('/api/save', methods=['POST'])
+def save_recipe():
+    data = request.get_json()
+    title = data["title"]
+    time_required = data["readyInMins"]
+    servings = data["servings"]
+    ingredients = data["ingredients"]
+    steps = data["steps"]
+
+    saved_recipe = crud.create_recipe(title, ingredients, time_required, servings)
+
+    recipe_id = saved_recipe.recipe_id
+
+    cookbook_id = session['cookbook_id']
+
+    crud.link_recipe_to_cookbook(cookbook_id, recipe_id)
+
+    for index, step in enumerate(steps):
+        crud.create_step(recipe_id, index+1, step)
+
+    data = {
+            "title": saved_recipe.title,
+            "ingredients": saved_recipe.ingredients,
+            "time_required": saved_recipe.time_required,
+            "servings": saved_recipe.servings,
+            "media": saved_recipe.media,
+            "steps": []}
+    
+    steps = crud.get_steps_for_recipe(recipe_id)
+
+    for step in steps:
+        data["steps"].append({"key": step.step_id,
+                    "num": step.step_number, 
+                    "body": step.body})
+    
+    
+    return jsonify(data)
+
+
 # @app.route('/api/clear-cookies')
 # def clear_cookies():
 #     print(session["user_id"])
