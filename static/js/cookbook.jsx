@@ -37,7 +37,7 @@ function RecipeDetails (props) {
     if (!props.recipeDetails) {
         return <div></div>
     }
-    console.log(props.recipeDetails)
+
     
       const recipeSteps = []
       for (const step of props.recipeDetails.steps) {
@@ -92,10 +92,6 @@ function RecipeList (props) {
     return <ul>{cookbookRecipes}</ul>
 }
 
-function StepBox () {
-    return <input type='area'></input>
-}
-
 function RecipieForm (props) {
      //track what user is entering in fields
      const [title, setTitle] = React.useState('');
@@ -103,8 +99,33 @@ function RecipieForm (props) {
      const [mins, setMins] = React.useState('');
      const [servings, setServings] = React.useState('');
      const [ingredients, setIngredients] = React.useState('');
-     const [steps, setSteps] = React.useState('');
+     const [steps, setSteps] = React.useState(['']);
+    
+    console.log(props.recipeDetails)
 
+    //  const instructions = []
+
+    //  if (props.recipieDetails) {
+    //     for (const step of props.recipieDetails.step) {
+    //         instructions.push(step.body)
+    //  }}
+
+    //don't want to derive state from props. need to rethink. 
+    //  if (props.buttonClicked === 'edit') {
+    //     React.useEffect(() => {
+    //         setTitle(props.recipeDetails.title)
+    //         setMins(props.recipeDetails.time_required)
+    //         setServings(props.recipeDetails.servings)
+    //         setIngredients(props.recipeDetails.ingredients)
+    //         setSteps(instructions)
+    //     },[])
+         
+    //  }
+    
+    const addStep = (evt) => {
+        evt.preventDefault();
+        setSteps([...steps, '']);
+    };
 
     return (
         <form>
@@ -135,25 +156,33 @@ function RecipieForm (props) {
                     id='ingredients'
                     onChange={(evt) => setIngredients(evt.target.value)}
                     value={ingredients}></input>
-            <label>Steps</label>
-            <input type='area'
-                    id='steps'
-                    onChange={(evt) => setSteps(evt.target.value)}
-                    value={steps}></input>
+            <label>Steps:</label>
+            <ol>
+            {
+                steps.map((stepBody, index) => {
+                    return (
+                        <li key={`step-${index}`}>
+                            <input type='area'
+                                    value={stepBody}
+                                    id={`step-${index}`}
+                                    data-idx={index}></input>
+                        </li>
+                    )
+                }) 
+            }
+            </ol>
+            <button onClick={addStep}>Add Step</button>
         </form>
     )
 }
 
-
 function ChangeRecipeButton(props) {
 
     const showForm = () => {
-        props.setShowRecipeDetails(false)
-
         if (props.caption === 'Edit Recipe') {
-            props.setButtonClicked('Edit')
+            props.setShowRecipeDetails([false, "edit"])
         } else {
-            props.setButtonClicked('New')
+            props.setShowRecipeDetails([false, "new"])
         }
     }
 
@@ -163,7 +192,7 @@ function ChangeRecipeButton(props) {
 function BackButton(props) {
 
     const hideForm = () => {
-        props.setShowRecipeDetails(true)
+        props.setShowRecipeDetails([true])
     }
 
     return <button onClick={hideForm}>Back to Recipe Details</button>
@@ -174,8 +203,7 @@ function Cookbook() {
 
     const [recipes, setRecipes] = React.useState([])
     const [recipeDetails, setRecipeDetails] = React.useState('')
-    const [showRecipeDetails, setShowRecipeDetails] = React.useState(true)
-    const [buttonClicked, setButtonClicked] = React.useState('')
+    const [showRecipeDetails, setShowRecipeDetails] = React.useState([true])
 
     React.useEffect(() => {
         fetch('/api/cookbook-details')
@@ -188,20 +216,19 @@ function Cookbook() {
         <React.Fragment>
             <h2>This is a cookbook!</h2>
             <RecipeList recipes={recipes} setRecipeDetails={setRecipeDetails}/>
-            { showRecipeDetails ?  <div>
+            { showRecipeDetails[0] ?  <div>
                                         <CreateNewCookbook />
                                         <ChangeRecipeButton caption='Edit Recipe'
-                                                            setShowRecipeDetails={setShowRecipeDetails}
-                                                            setButtonClicked={setButtonClicked}/>
+                                                            setShowRecipeDetails={setShowRecipeDetails}/>
                                         <ChangeRecipeButton caption='New Recipe' 
-                                                            setShowRecipeDetails={setShowRecipeDetails}
-                                                            setButtonClicked={setButtonClicked}/>
+                                                            setShowRecipeDetails={setShowRecipeDetails}/>
                                         <RecipeDetails  recipeDetails={recipeDetails}/> 
                                     </div>
                                     :
                                     <div>
                                         <BackButton setShowRecipeDetails={setShowRecipeDetails}/>
-                                        <RecipieForm buttonClicked={buttonClicked}/>
+                                        <RecipieForm recipeDetails={recipeDetails}
+                                                        buttonClicked={showRecipeDetails[1]}/>
                                     </div>}
            
        </React.Fragment>
