@@ -101,26 +101,22 @@ function RecipieForm (props) {
      const [ingredients, setIngredients] = React.useState('');
      const [steps, setSteps] = React.useState(['']);
 
-     console.log(steps)
+     console.log(props.recipeDetails)
 
-    //  const instructions = []
 
-    //  if (props.recipieDetails) {
-    //     for (const step of props.recipieDetails.step) {
-    //         instructions.push(step.body)
-    //  }}
-
-    //don't want to derive state from props. need to rethink. 
-    //  if (props.buttonClicked === 'edit') {
-    //     React.useEffect(() => {
-    //         setTitle(props.recipeDetails.title)
-    //         setMins(props.recipeDetails.time_required)
-    //         setServings(props.recipeDetails.servings)
-    //         setIngredients(props.recipeDetails.ingredients)
-    //         setSteps(instructions)
-    //     },[])
-         
-    //  }
+     if (props.buttonClicked === 'edit') {
+        React.useEffect(() => {
+            setTitle(props.recipeDetails.title)
+            setMins(props.recipeDetails.time_required)
+            setServings(props.recipeDetails.servings)
+            setIngredients(props.recipeDetails.ingredients)
+            const instructions = [];
+            for (const step of props.recipeDetails.steps) {
+                instructions.push(step.body);
+            }
+            setSteps(instructions);
+        },[])
+     }
     
     const addStep = (evt) => {
         evt.preventDefault();
