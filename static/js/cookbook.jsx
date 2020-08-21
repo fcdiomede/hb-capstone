@@ -133,6 +133,13 @@ function RecipieForm (props) {
         setSteps(updatedSteps);
       };
 
+    const deleteStep = (evt) => {
+        const updatedSteps = [...steps];
+        const deleteIndex = evt.target.dataset.idx;
+        updatedSteps.splice(deleteIndex, 1);
+        setSteps(updatedSteps);
+    };
+
     return (
         <form>
             <label>Title</label>
@@ -173,6 +180,10 @@ function RecipieForm (props) {
                                     id={`step-${index}`}
                                     data-idx={index}
                                     onChange={handleStepChange}></input>
+                            <input type='button' 
+                                    data-idx={index} 
+                                    onClick={deleteStep}
+                                    value='Delete' />
                         </li>
                     )
                 }) 
